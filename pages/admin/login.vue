@@ -97,10 +97,10 @@
             </a-form-model>
           </div>
           <div class="w-full flex flex-col gap-10 mt-10">
-            <span class="flex gap-6 items-center">
-              <a-checkbox />
+            <!-- <span class="flex gap-6 items-center">
+              <a-checkbox  />
               <p class="font-[verdana-400] text-base text-white">Eslab qolish</p></span
-            >
+            > -->
             <button
               @click="submit"
               class="w-full flex py-[18px] justify-center text-[#0E3685] uppercase font-[verdana-700] bg-white rounded-[12px]"
@@ -135,6 +135,7 @@ export default {
     };
   },
   methods: {
+
     submit() {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
