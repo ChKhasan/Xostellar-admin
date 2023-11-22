@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Geologica:wght@300;400;500;600;700;800&display=swap");
+
+/* fonts */
+@font-face {
+  font-family: "verdana-400";
+  src: url(../fonts/verdana.ttf);
+}
+@font-face {
+  font-family: "verdana-700";
+  src: url(../fonts/verdana-bold.ttf);
+}
+@font-face {
+  font-family: "verdana-italic-700";
+  src: url(../fonts/verdana-bold-italic.ttf);
+}
+
+/* variables */
+:root {
+  --v-regular: "verdana-400";
+  --v-bold: "verdana-700";
+  --v-bold-italic: "verdana-italic-700";
+  --blue: #236af9;
+  --blue-bold: #092d53;
+  --blue-grey: #5f758c;
+  --bg-grey: #e1e1e1;
+  --green: #0b8927;
+  --red-dark: #8b0828;
+  --black: #0d152c;
+  --green-light: #00e733;
+  --red-dark2: #d9244f;
+  --orange: #d4840c;
+}
+.verdana-400 {
+  font-family: var(--v-regular);
+}
+.verdana-700 {
+  font-family: var(--v-bold);
+}
+.verdana-i-700 {
+  font-family: var(----v-bold-italic);
+}
+/* main/css */
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Geologica", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+  background: var(--bg-grey);
+}
+a,
+button {
+  font-family: "Geologica", sans-serif;
+}
+.font-tt {
+  font-family: "Geologica", sans-serif;
+}
+*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol
+      *)) {
+  all: unset;
+  display: revert;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+a,
+button {
+  cursor: pointer;
+}
+ol,
+ul,
+menu {
+  list-style: none;
+}
+img {
+  max-inline-size: 100%;
+  max-block-size: 100%;
+}
+table {
+  border-collapse: collapse;
+}
+input,
+textarea {
+  -webkit-user-select: auto;
+}
+textarea {
+  white-space: revert;
+}
+meter {
+  -webkit-appearance: revert;
+  appearance: revert;
+}
+:where(pre) {
+  all: revert;
+}
+::placeholder {
+  color: unset;
+}
+::marker {
+  content: initial;
+}
+:where([hidden]) {
+  display: none;
+}
+:where([contenteditable]:not([contenteditable="false"])) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+  -webkit-user-select: auto;
+}
+:where([draggable="true"]) {
+  -webkit-user-drag: element;
+}
+:where(dialog:modal) {
+  all: revert;
+}
+ul {
+  margin: 0;
+}
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+p {
+  margin: 0;
+  margin-bottom: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  margin-bottom: 0;
+}
+input:focus-visible {
+  outline: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--blue-bold);
+  border-radius: 10px;
+}
+.ant-modal-footer {
+  display: none !important;
+}
