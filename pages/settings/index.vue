@@ -451,7 +451,14 @@ export default {
     submitUser() {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
-          this.__POST_USERS(this.form);
+          if (this.form.password != this.form.password_confirmation) {
+            this.$notification["error"]({
+              message: "Error",
+              description: "Пожалуйста, перепроверьте пароль",
+            });
+          } else {
+            this.__POST_USERS(this.form);
+          }
         }
       });
     },
