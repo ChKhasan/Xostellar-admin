@@ -97,7 +97,7 @@ export default {
         const data = await this.$store.dispatch("fetchMessages/postMessage", { ...form });
         this.$notification["success"]({
           message: "Success",
-          description: "Успешно добавлен",
+          description: "Xabar muvaffaqiyatli yuborildi",
         });
         this.$router.go(-1);
       } catch (e) {
