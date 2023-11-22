@@ -501,7 +501,7 @@ export default {
         this.userInfo = {};
         this.$notification["success"]({
           message: "Success",
-          description: "Успешно изменен",
+          description: "Muvaffaqiyatli o'zgartirildi",
         });
       } catch (e) {
         this.$notification["error"]({
@@ -519,7 +519,7 @@ export default {
         this.visibleUser = false;
         this.$notification["success"]({
           message: "Success",
-          description: "Успешно изменен",
+          description: "Foydalanuvchi muvaffaqiyatli yaratildi",
         });
       } catch (e) {
         this.$notification["error"]({

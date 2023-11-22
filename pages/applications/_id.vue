@@ -1002,7 +1002,7 @@ export default {
         });
         this.$notification["success"]({
           message: "Success",
-          description: "Успешно изменен",
+          description: "Ariza muvaffaqiyatli o'zgartirildi",
         });
         this.$router.go(-1);
       } catch (e) {

@@ -311,7 +311,7 @@ export default {
         this.visible = false;
         this.$notification["success"]({
           message: "Success",
-          description: "Успешно изменен",
+          description: "Muvaffaqiyatli o'zgartirildi",
         });
       } catch (e) {
         this.$notification["error"]({
