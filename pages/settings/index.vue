@@ -1,32 +1,32 @@
 <template>
   <div class="max-w-[1536px] mx-auto py-10">
     <div class="search mb-[60px] flex justify-between">
-      <button
+      <!-- <button
         @click="visibleUser = true"
         class="w-[366px] h-12 flex uppercase justify-center gap-5 items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-400] bg-blue-bold text-white text-base"
       >
         Yangi xabar foydalanuvchi yaratish
-      </button>
+      </button> -->
       <div class="flex gap-6 justify-center">
         <button
           :class="{ 'bg-blue-bold text-white': $route.name == 'settings' }"
-          class="w-[300px] h-12 flex uppercase justify-center items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-400] text-blue-bold text-base"
+          class="w-[366px] h-12 flex uppercase justify-center items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-400] text-blue-bold text-base"
         >
           Foydalanuvchilar
         </button>
         <button
           :class="{ 'bg-blue-bold text-white': $route.name == 'settings-messages' }"
           @click="$router.push('/settings/messages')"
-          class="w-[300px] h-12 flex uppercase justify-center items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-400] text-blue-bold text-base"
+          class="w-[366px] h-12 flex uppercase justify-center items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-400] text-blue-bold text-base"
         >
           Xabarlar
         </button>
       </div>
       <button
-        @click="$router.push('/settings/add')"
-        class="w-[366px] h-12 flex uppercase justify-center gap-5 items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-400] bg-blue-bold text-white text-base"
+      @click="visibleUser = true"
+        class=" px-6 h-12 flex uppercase justify-center gap-5 items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-400] bg-blue-bold text-white text-base"
       >
-        Yangi xabar jo‘natish
+      Yangi xabar foydalanuvchi yaratish
         <svg
           width="24"
           height="24"
