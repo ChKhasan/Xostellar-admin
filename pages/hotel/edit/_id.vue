@@ -25,7 +25,7 @@
                   v-for="region in regions"
                   :key="region?.id"
                 >
-                  {{ region?.name?.ru }}</a-select-option
+                  {{ region?.name?.uz }}</a-select-option
                 >
               </a-select></a-form-model-item
             >

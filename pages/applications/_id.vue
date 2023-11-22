@@ -51,7 +51,7 @@
           <p class="text-white font-[verdana-400] text-base">
             Xostellar joylashgan hudud
           </p>
-          <h5 class="text-[24px] text-white font-bold">{{ info?.region?.name?.ru }}</h5>
+          <h5 class="text-[24px] text-white font-bold">{{ info?.region?.name?.uz }}</h5>
         </div>
         <div
           class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
@@ -786,7 +786,7 @@
                     v-for="region in regions"
                     :key="region?.id"
                   >
-                    {{ region?.name?.ru }}</a-select-option
+                    {{ region?.name?.uz }}</a-select-option
                   >
                 </a-select>
               </a-form-model-item>
