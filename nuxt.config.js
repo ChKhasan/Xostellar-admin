@@ -26,7 +26,7 @@ export default {
     init(axios) {
       axios.defaults.withCredentials = true;
     },
-    baseURL: "https://api.hotels.ndc.uz/api/admin",
+    baseURL: process.env.BASE_URL,
   },
   components: true,
 
