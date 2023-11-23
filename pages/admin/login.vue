@@ -102,11 +102,17 @@
               <p class="font-[verdana-400] text-base text-white">Eslab qolish</p></span
             > -->
             <button
-              @click="submit"
+              @click="submit('__AUTH')"
               class="w-full flex py-[18px] justify-center text-[#0E3685] uppercase font-[verdana-700] bg-white rounded-[12px]"
             >
               Kirish
             </button>
+            <a
+              :href="link"
+              class="mx-auto flex justify-center text-white uppercase font-[verdana-700] rounded-[12px]"
+            >
+              OneID bilan kirish
+            </a>
           </div>
         </div>
       </div>
@@ -132,22 +138,55 @@ export default {
         username: "",
         password: "",
       },
+      link: ""
     };
+  },
+  async mounted() {
+    this.__GET_LINK();
+    if (this.$route.query["code"]) {
+      try {
+        await this.$store.commit("getCode", this.$route.query["code"]);
+        this.$router.replace({ path: "/admin/login", query: {} });
+        this.__AUTH_ONEID({ code: this.$store.state.code });
+      } catch (e) {
+      } finally {
+      }
+    }
   },
   methods: {
 
-    submit() {
+    submit(name) {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
-          this.__AUTH(this.form);
+          this[name](this.form);
         } else {
         }
       });
     },
+    submitByOneID() {},
     async __AUTH(data) {
       try {
         const res = await this.$store.dispatch("fetchAuth/auth", data);
         localStorage.setItem("auth_token", res.data.token);
+        this.$store.commit("logIn");
+        this.$router.push("/");
+      } catch (e) {
+        this.$notification["error"]({
+          message: "Error",
+          description: e.response.statusText,
+        });
+      }
+    },
+    async __GET_LINK() {
+      try {
+        const res = await this.$store.dispatch("fetchAuth/getOneIDLink");
+        this.link = res?.data;
+      } catch (e) {}
+    },
+    async __AUTH_ONEID(data) {
+      try {
+        const res = await this.$store.dispatch("fetchAuth/authByOneID", data);
+        localStorage.setItem("auth_token", res.data?.data?.token);
         this.$store.commit("logIn");
         this.$router.push("/");
       } catch (e) {

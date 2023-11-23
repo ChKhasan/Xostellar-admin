@@ -1,6 +1,7 @@
 export const state = () => ({
   authenticated: false,
   profileInfo: {},
+  code: ""
 });
 export const mutations = {
   logIn(state) {
@@ -8,5 +9,8 @@ export const mutations = {
   },
   profileInfo(state, payload) {
     state.profileInfo = payload;
+  },
+  getCode(state, payload) {
+    state.code = payload;
   },
 };
