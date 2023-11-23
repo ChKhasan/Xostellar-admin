@@ -116,7 +116,7 @@
         <a-form-model :model="form" ref="ruleForm" :rules="rules">
           <div class="flex flex-col gap-10">
             <div class="grid grid-cols-2 gap-6">
-              <a :href="`https://api.hotels.ndc.uz/storage/${files?.state_certificate}`">
+              <a :href="`https://hotels.ndc.uz/storage/${files?.state_certificate}`">
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
                 >
@@ -147,7 +147,7 @@
                     </svg>
                   </p>
                   <span
-                    :href="`https://api.hotels.ndc.uz/storage/${files?.cadastre}`"
+                    :href="`https://hotels.ndc.uz/storage/${files?.cadastre}`"
                     class="text-base text-[#0D152C] flex justify-center gap-10 items-center mt-[50px]"
                   >
                     Davlat komissiyasining foydalanishga qabul qilish to‘g‘risida
@@ -241,7 +241,7 @@
                   </div>
                 </div>
               </a>
-              <a :href="`https://api.hotels.ndc.uz/storage/${files?.cadastre}`">
+              <a :href="`https://hotels.ndc.uz/storage/${files?.cadastre}`">
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
                 >
@@ -365,7 +365,7 @@
               </a>
             </div>
             <div class="grid grid-cols-2 gap-6">
-              <a :href="`https://api.hotels.ndc.uz/storage/${files?.sanitation}`">
+              <a :href="`https://hotels.ndc.uz/storage/${files?.sanitation}`">
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
                 >
@@ -488,7 +488,7 @@
                   </div>
                 </div>
               </a>
-              <a :href="`https://api.hotels.ndc.uz/storage/${files?.fire_safety}`">
+              <a :href="`https://hotels.ndc.uz/storage/${files?.fire_safety}`">
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
                 >
@@ -612,7 +612,7 @@
               </a>
             </div>
             <div class="grid grid-cols-1 gap-6">
-              <a :href="`https://api.hotels.ndc.uz/storage/${files?.certificate}`">
+              <a :href="`https://hotels.ndc.uz/storage/${files?.certificate}`">
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
                 >
