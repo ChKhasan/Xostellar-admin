@@ -26,7 +26,8 @@
       <button
         @click="nextPage"
         :class="{
-          'opacity-10 pointer-events-none': totalPage / (current * params.pageSize) < 1,
+          'opacity-10 pointer-events-none':
+            totalPage / ((current + 1) * params.pageSize) < 1,
         }"
         class="flex gap-[10px] w-[236px] h-12 border border-solid border-blue-bold bg-blue-bold rounded-[6px] justify-center items-center text-white font-[verdana-400] text-base"
       >
@@ -51,7 +52,8 @@
     </div>
     <div class="flex gap-12 items-center">
       <p class="text-black font-[verdana-400] text-base">
-        Barcha sahifalar <span>{{(this.totalPage / this.params.pageSize).toFixed()}}</span>
+        Barcha sahifalar
+        <span>{{ (this.totalPage / this.params.pageSize).toFixed() }}</span>
       </p>
       <div class="flex gap-3 items-center">
         <input
@@ -156,11 +158,11 @@ export default {
     this.current = Number(this.$route.query.page);
     this.pageHandle = Number(this.$route.query.page);
   },
-  watch:{
+  watch: {
     current(val) {
-      this.pageHandle = val
-    }
-  }
+      this.pageHandle = val;
+    },
+  },
 };
 </script>
 <style lang="css" scoped></style>

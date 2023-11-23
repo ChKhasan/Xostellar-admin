@@ -7,7 +7,7 @@
           @click="$router.push('/information')"
           class="w-[366px] h-12 flex uppercase justify-center items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-700] text-blue-bold text-base"
         >
-          Viloyatlar 
+          Viloyatlar
         </button>
         <button
           :class="{ 'bg-blue-bold text-white': $route.name == 'information-additional' }"
@@ -26,6 +26,7 @@
         :loading="loading"
         :pagination="false"
         align="center"
+        :rowKey="(record) => record.id"
       >
         <span slot="indexId" slot-scope="text">
           <span class="flex gap-5 justify-end">
@@ -87,15 +88,6 @@
               </svg>
             </button>
           </span>
-        </span>
-        <span slot="name_ru" slot-scope="text">
-          {{ text?.name?.ru }}
-        </span>
-        <span slot="name_uz" slot-scope="text">
-          {{ text?.name?.uz }}
-        </span>
-        <span slot="name_en" slot-scope="text">
-          {{ text?.name?.en }}
         </span>
       </a-table>
     </div>
@@ -202,32 +194,36 @@ export default {
         {
           title: "Klassifikator",
           dataIndex: "id",
-          key: "id",
           slots: { title: "customTitle" },
           scopedSlots: { customRender: "id" },
           className: "column-text",
         },
         {
           title: "Nomi (O‘Z)",
+          customRender: (text, row, index) => {
+            return <span>{text?.name?.uz}</span>;
+          },
           slots: { title: "customTitle" },
-          scopedSlots: { customRender: "name_uz" },
           className: "column-text",
         },
         {
           title: "Nomi (RU)",
+          customRender: (text, row, index) => {
+            return <span>{text?.name?.ru}</span>;
+          },
           slots: { title: "customTitle" },
-          scopedSlots: { customRender: "name_ru" },
           className: "column-text",
         },
         {
           title: "Nomi (EN)",
+          customRender: (text, row, index) => {
+            return <span>{text?.name?.en}</span>;
+          },
           slots: { title: "customTitle" },
-          scopedSlots: { customRender: "name_en" },
           className: "column-text",
         },
         {
           dataIndex: "indexId",
-          key: "indexId",
           slots: { title: "customTitle" },
           scopedSlots: { customRender: "indexId" },
           align: "end",
@@ -249,7 +245,6 @@ export default {
     this.__GET_REGIONS();
   },
   methods: {
- 
     handleOk() {
       this.visible = false;
     },
@@ -299,7 +294,6 @@ export default {
         this.$notification["success"]({
           message: "Success",
           description: "Viloyat muvaffaqiyatli o'zgartirildi",
-
         });
       } catch (e) {
         this.$notification["error"]({
@@ -377,7 +371,7 @@ export default {
 :deep(.ant-table-tbody
     > tr:nth-child(2n):hover:not(.ant-table-expanded-row):not(.ant-table-row-selected)
     > td) {
- background: #002144;
+  background: #002144;
 }
 /* table  */
 .search-block {
