@@ -129,6 +129,9 @@ export default {
           title: "Reyestr raqami",
           dataIndex: "register_number",
           key: "register_number",
+          customRender: (text) => {
+            return text ? text : "---";
+          },
           slots: { title: "customTitle" },
           scopedSlots: { customRender: "register_number" },
           className: "column-text cursor-pointer",
@@ -283,7 +286,7 @@ export default {
 :deep(.ant-table-tbody
     > tr:nth-child(2n):hover:not(.ant-table-expanded-row):not(.ant-table-row-selected)
     > td) {
- background: #002144;
+  background: #002144;
 }
 /* table  */
 .search-block {

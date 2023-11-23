@@ -30,7 +30,7 @@
       >
         <span slot="indexId" slot-scope="text">
           <span class="flex gap-5 justify-end">
-            <button>
+            <!-- <button>
               <svg
                 width="16"
                 height="16"
@@ -53,7 +53,7 @@
                   stroke-linejoin="round"
                 />
               </svg>
-            </button>
+            </button> -->
             <button class="edit" @click="editData(text)">
               <svg
                 width="16"
