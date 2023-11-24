@@ -19,6 +19,7 @@ export default {
     { src: "~plugins/antd-ui.js", ssr: false },
     { src: "~plugins/quill-editor.js", ssr: false },
     { src: "~/plugins/ymapPlugin.js", mode: "client" },
+    { src: "~plugins/apex-chart.js", ssr: false },
   ],
   ssr: false,
   axios: {

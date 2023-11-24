@@ -23,10 +23,10 @@
         </button>
       </div>
       <button
-      @click="visibleUser = true"
-        class=" px-6 h-12 flex uppercase justify-center gap-5 items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-400] bg-blue-bold text-white text-base"
+        @click="visibleUser = true"
+        class="px-6 h-12 flex uppercase justify-center gap-5 items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-400] bg-blue-bold text-white text-base"
       >
-      Yangi xabar foydalanuvchi yaratish
+        Yangi xabar foydalanuvchi yaratish
         <svg
           width="24"
           height="24"
@@ -235,32 +235,11 @@
               </div>
               <div class="grid grid-cols-1 w-full">
                 <a-form-model-item
-                  prop="username"
+                  prop="pin"
                   class="form-item w-full mb-0"
-                  label="Login"
+                  label="JSHSHIR "
                 >
-                  <a-input v-model="form.username" placeholder="Login" />
-                </a-form-model-item>
-              </div>
-              <div class="grid grid-cols-1 w-full">
-                <a-form-model-item
-                  prop="password"
-                  class="form-item w-full mb-0"
-                  label="Parol"
-                >
-                  <a-input v-model="form.password" placeholder="Parol" />
-                </a-form-model-item>
-              </div>
-              <div class="grid grid-cols-1 w-full">
-                <a-form-model-item
-                  prop="password_confirmation"
-                  class="form-item w-full mb-0"
-                  label="Parol tasdiqlash"
-                >
-                  <a-input
-                    v-model="form.password_confirmation"
-                    placeholder="Parol tasdiqlash"
-                  />
+                  <a-input v-model="form.pin" placeholder="JSHSHIR " />
                 </a-form-model-item>
               </div>
             </div>
@@ -306,26 +285,19 @@ export default {
       regions: [],
       form: {
         name: "",
-        username: "",
+        pin: "",
         region_id: undefined,
-        password: "",
-        password_confirmation: "",
       },
 
       rules: {
         name: [{ required: true, message: "This field is required", trigger: "change" }],
-        username: [
+        pin: [
           { required: true, message: "This field is required", trigger: "change" },
         ],
         region_id: [
           { required: true, message: "This field is required", trigger: "change" },
         ],
-        password: [
-          { required: true, message: "This field is required", trigger: "change" },
-        ],
-        password_confirmation: [
-          { required: true, message: "This field is required", trigger: "change" },
-        ],
+     
       },
       users: [],
       userInfo: {},
@@ -609,7 +581,7 @@ export default {
 :deep(.ant-table-tbody
     > tr:nth-child(2n):hover:not(.ant-table-expanded-row):not(.ant-table-row-selected)
     > td) {
- background: #002144;
+  background: #002144;
 }
 /* table  */
 .search-block {
