@@ -9,7 +9,7 @@
             <h4
               class="text-center font-[verdana-700] text-white uppercase leading-[48px] text-[32px]"
             >
-            Xostellar Yagona Reyesrti tizimi
+              Xostellar Yagona Reyesrti tizimi
             </h4>
           </div>
           <div class="w-full flex justify-center">
@@ -39,16 +39,20 @@
           </div>
         </div>
       </div>
+      <Loader v-if="loading"/>
     </div>
   </div>
 </template>
 <script>
+import Loader from "../../components/loader.vue";
+
 export default {
   layout: "empty",
   middleware: "login",
   data() {
     return {
       link: "",
+      loading: false,
     };
   },
   async mounted() {
@@ -72,11 +76,13 @@ export default {
     },
     async __AUTH_ONEID(data) {
       try {
+        this.loading = true;
         const res = await this.$store.dispatch("fetchAuth/authByOneID", data);
         localStorage.setItem("auth_token", res.data?.token);
         this.$store.commit("logIn");
         this.$router.push("/");
       } catch (e) {
+        this.loading = false;
         this.$notification["error"]({
           message: "Error",
           description: e.response.statusText,
@@ -84,6 +90,7 @@ export default {
       }
     },
   },
+  components: { Loader },
 };
 </script>
 <style lang="css" scoped>
