@@ -1,0 +1,156 @@
+<template lang="html">
+  <div class="max-w-[1536px] mx-auto py-10">
+    <div class="flex flex-col gap-[10px]">
+    <div class="grid grid-cols-3 gap-[10px]">
+      <div class="py-3 bg-white rounded-[10px] px-6 flex flex-col gap-3">
+        <p class="text-base font-semibold">
+          Xostellar, oʼtovli va chodirli oromgohlar soni
+        </p>
+        <h4 class="text-[24px] text-[#437FEC] font-bold">26</h4>
+      </div>
+      <div class="py-3 bg-white rounded-[10px] px-6 flex flex-col gap-3">
+        <p class="text-base font-semibold">Aktiv mehmon uylari</p>
+        <h4 class="text-[24px] text-[#00B55D] font-bold">+16 500 000 сум</h4>
+      </div>
+      <div class="py-3 bg-white rounded-[10px] px-6 flex flex-col gap-3">
+        <p class="text-base font-semibold">To‘xtatilgan mehmon uylari</p>
+        <h4 class="text-[24px] text-[#BB2649] font-bold">+6</h4>
+      </div>
+    </div>
+      <div class="py-6 bg-white rounded-[10px] px-6 flex justify-between">
+        <h4 class="text-[24px] font-semibold">Arizalar soni</h4>
+        <h4 class="text-[24px] font-semibold">1 020</h4>
+      </div>
+      <div class="grid grid-cols-4 gap-[10px]">
+        <div class=" py-3 bg-white rounded-[10px] px-6 flex flex-col gap-3" >
+          <p class="text-base font-semibold text-[#3C4BDC]">Yangi</p>
+          <h5 class="text-[24px] font-bold py-1">89</h5>
+          <ul class="flex flex-col gap-3">
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+
+          </ul>
+        </div>
+        <div class=" py-3 bg-white rounded-[10px] px-6 flex flex-col gap-3" >
+          <p class="text-base font-semibold text-[#FFA909]">Ko’rib chiqilmoqda</p>
+          <h5 class="text-[24px] font-bold py-1">105</h5>
+          <ul class="flex flex-col gap-3">
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+
+          </ul>
+        </div>
+        <div class=" py-3 bg-white rounded-[10px] px-6 flex flex-col gap-3" >
+          <p class="text-base font-semibold text-[#00B55D]">Muvaffaqiyatli yakunlandi</p>
+          <h5 class="text-[24px] font-bold py-1">53</h5>
+          <ul class="flex flex-col gap-3">
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+
+          </ul>
+        </div>
+        <div class=" py-3 bg-white rounded-[10px] px-6 flex flex-col gap-3" >
+          <p class="text-base font-semibold text-[#BB2649]">Rad etildi</p>
+          <h5 class="text-[24px] font-bold py-1">895</h5>
+          <ul class="flex flex-col gap-3">
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+            <li class="flex justify-between">
+              <p class="text-base font-semibold">Toshkent</p>
+              <p class="text-base font-semibold">2</p>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {};
+</script>
+<style lang="css" scoped></style>

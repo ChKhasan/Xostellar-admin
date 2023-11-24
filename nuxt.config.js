@@ -29,7 +29,12 @@ export default {
     baseURL: process.env.BASE_URL,
   },
   components: true,
-
+  layout: {
+    error: 'error',
+  },
+  generate: {
+    fallback: true,
+  },
   buildModules: ["@nuxtjs/tailwindcss"],
 
   modules: ["@nuxtjs/axios"],

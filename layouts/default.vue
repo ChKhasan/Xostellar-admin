@@ -19,7 +19,9 @@
                 <li>
                   <nuxt-link
                     to="/"
-                    :class="{ active: $route.name == 'index' || $route.name.includes('hotel') }"
+                    :class="{
+                      active: $route.name == 'index' || $route.name.includes('hotel'),
+                    }"
                     class="font-[verdana-400] text-base leading-6 text-white flex gap-6 hover:text-white px-6 py-3 rounded-[6px]"
                     ><svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +100,11 @@
                 <li>
                   <nuxt-link
                     to="/applications"
-                    :class="{ active: $route.name == 'applications' || $route.name.includes('applications') }"
+                    :class="{
+                      active:
+                        $route.name == 'applications' ||
+                        $route.name.includes('applications'),
+                    }"
                     class="font-[verdana-400] text-base leading-6 text-white flex gap-6 hover:text-white px-6 py-3 rounded-[6px]"
                     ><svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -153,7 +159,8 @@
                     to="/information"
                     :class="{
                       active:
-                        $route.name == 'information' || $route.name.includes('information')
+                        $route.name == 'information' ||
+                        $route.name.includes('information'),
                     }"
                     class="font-[verdana-400] text-base leading-6 text-white flex gap-6 hover:text-white px-6 py-3 rounded-[6px]"
                   >
@@ -252,7 +259,7 @@
                   class="h-8 w-8 rounded-[6px] overflow-hidden"
                   src="../assets/images/avatar.png"
                   alt=""
-                />{{$store.state.profileInfo?.username}}
+                />{{ $store.state.profileInfo?.username }}
               </button>
             </a-popover>
           </div>
@@ -272,6 +279,7 @@ export default {
       visible: false,
     };
   },
+
   methods: {
     async logout() {
       try {
