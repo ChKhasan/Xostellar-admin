@@ -1,116 +1,130 @@
 <template lang="html">
   <div class="create-hotel max-w-[1536px] mx-auto py-[60px]">
-    <div class="flex justify-start items-center">
-      <button
-        @click="$router.push('/applications')"
-        class="flex gap-[10px] w-[236px] h-11 border border-solid border-blue-bold bg-blue-bold rounded-[8px] justify-center items-center text-white font-[verdana-400] text-base"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
+    <a-form-model :model="form" ref="ruleForm" :rules="rules">
+      <div class="flex justify-start items-center">
+        <button
+          @click="$router.push('/applications')"
+          class="flex gap-[10px] w-[236px] h-11 border border-solid border-blue-bold bg-blue-bold rounded-[8px] justify-center items-center text-white font-[verdana-400] text-base"
         >
-          <path
-            d="M9.57 5.93018L3.5 12.0002L9.57 18.0702"
-            stroke="white"
-            stroke-width="1.5"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M20.4999 12H3.66992"
-            stroke="white"
-            stroke-width="1.5"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        Orqaga
-      </button>
-    </div>
-    <div class="body mt-10 flex flex-col gap-10">
-      <div class="title w-full flex justify-center bg-blue-grey py-[10px] rounded-[10px]">
-        <h1 class="font-[verdana-700] text-[24px] text-white">Xostellar ma’lumotlari</h1>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M9.57 5.93018L3.5 12.0002L9.57 18.0702"
+              stroke="white"
+              stroke-width="1.5"
+              stroke-miterlimit="10"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M20.4999 12H3.66992"
+              stroke="white"
+              stroke-width="1.5"
+              stroke-miterlimit="10"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Orqaga
+        </button>
       </div>
-      <div class="grid grid-cols-3 gap-6">
+      <div class="body mt-10 flex flex-col gap-10">
         <div
-          class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
+          class="title w-full flex justify-center bg-blue-grey py-[10px] rounded-[10px]"
         >
-          <p class="text-white font-[verdana-400] text-base">Xostellar nomi</p>
-          <h5 class="text-[24px] text-white font-bold">{{ info?.name }}</h5>
+          <h1 class="font-[verdana-700] text-[24px] text-white">
+            Oilaviy mehmon uyi ma’lumotlari
+          </h1>
         </div>
-        <div
-          class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
-        >
-          <p class="text-white font-[verdana-400] text-base">
-            Xostellar joylashgan hudud
-          </p>
-          <h5 class="text-[24px] text-white font-bold">{{ info?.region?.name?.uz }}</h5>
+        <div class="grid grid-cols-3 gap-6">
+          <div
+            class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
+          >
+            <p class="text-white font-[verdana-400] text-base">Oilaviy mehmon uyi nomi</p>
+            <h5 class="text-[24px] text-white font-bold">{{ info?.name }}</h5>
+          </div>
+          <div
+            class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
+          >
+            <p class="text-white font-[verdana-400] text-base">
+              Oilaviy mehmon uyi joylashgan hudud
+            </p>
+            <h5 class="text-[24px] text-white font-bold">
+              {{ info?.region?.name?.uz || "----" }}
+            </h5>
+          </div>
+          <div
+            class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
+          >
+            <p class="text-white font-[verdana-400] text-base">
+              Oilaviy mehmon uyi manzili
+            </p>
+            <h5 class="text-[24px] text-white font-bold">
+              {{ info?.address_from_application }}
+            </h5>
+          </div>
         </div>
-        <div
-          class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
-        >
-          <p class="text-white font-[verdana-400] text-base">Xostellar manzili</p>
-          <h5 class="text-[24px] text-white font-bold">
-            {{ info?.address_from_application }}
-          </h5>
+        <div class="grid grid-cols-3 gap-6">
+          <div
+            class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
+          >
+            <p class="text-white font-[verdana-400] text-base">Tashkilot yuridik nomi</p>
+            <h5 class="text-[24px] text-white font-bold">{{ info?.legal_name }}</h5>
+          </div>
+          <div
+            class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
+          >
+            <p class="text-white font-[verdana-400] text-base">STIR raqami</p>
+            <h5 class="text-[24px] text-white font-bold">{{ info?.tin }}</h5>
+          </div>
+          <div
+            class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
+          >
+            <p class="text-white font-[verdana-400] text-base">
+              Oilaviy mehmon uyi rahbari
+            </p>
+            <h5 class="text-[24px] text-white font-bold">
+              {{ info?.director_surname }} {{ info?.director_name }}
+              {{ info?.director_fathers_name }}
+            </h5>
+          </div>
         </div>
-      </div>
-      <div class="grid grid-cols-3 gap-6">
-        <div
-          class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
-        >
-          <p class="text-white font-[verdana-400] text-base">Tashkilot yuridik nomi</p>
-          <h5 class="text-[24px] text-white font-bold">{{ info?.legal_name }}</h5>
+        <div class="grid grid-cols-3 gap-6">
+          <div
+            class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
+          >
+            <p class="text-white font-[verdana-400] text-base">
+              Oilaviy mehmon uyi telefon raqamlari
+            </p>
+            <h5 class="text-[24px] text-white font-bold">{{ info?.phone_number }}</h5>
+          </div>
+          <div
+            class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
+          >
+            <p class="text-white font-[verdana-400] text-base">Elektron manzili</p>
+            <h5 class="text-[24px] text-white font-bold">{{ info?.email }}</h5>
+          </div>
+          <div
+            class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
+          >
+            <p class="text-white font-[verdana-400] text-base">Veb sayti</p>
+            <h5 class="text-[24px] text-white font-bold">{{ info?.website }}</h5>
+          </div>
         </div>
-        <div
-          class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
-        >
-          <p class="text-white font-[verdana-400] text-base">STIR raqami</p>
-          <h5 class="text-[24px] text-white font-bold">{{ info?.tin }}</h5>
-        </div>
-        <div
-          class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
-        >
-          <p class="text-white font-[verdana-400] text-base">Xostellar rahbari</p>
-          <h5 class="text-[24px] text-white font-bold">
-            {{ info?.director_surname }} {{ info?.director_name }}
-            {{ info?.director_fathers_name }}
-          </h5>
-        </div>
-      </div>
-      <div class="grid grid-cols-3 gap-6">
-        <div
-          class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
-        >
-          <p class="text-white font-[verdana-400] text-base">
-            Xostellar telefon raqamlari
-          </p>
-          <h5 class="text-[24px] text-white font-bold">{{ info?.phone_number }}</h5>
-        </div>
-        <div
-          class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
-        >
-          <p class="text-white font-[verdana-400] text-base">Elektron manzili</p>
-          <h5 class="text-[24px] text-white font-bold">{{ info?.email }}</h5>
-        </div>
-        <div
-          class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
-        >
-          <p class="text-white font-[verdana-400] text-base">Veb sayti</p>
-          <h5 class="text-[24px] text-white font-bold">{{ info?.website }}</h5>
-        </div>
-      </div>
 
-      <div class="">
-        <a-form-model :model="form" ref="ruleForm" :rules="rules">
+        <div class="">
+          <!-- <a-form-model :model="form" ref="ruleForm" :rules="rules"> -->
           <div class="flex flex-col gap-10">
             <div class="grid grid-cols-2 gap-6">
-              <a :href="`https://hotels.ndc.uz/storage/${files?.state_certificate}`">
+              <a
+                v-if="files?.state_certificate"
+                :href="`https://api.hotels.ndc.uz/storage/${files?.state_certificate}`"
+              >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
                 >
@@ -141,7 +155,7 @@
                     </svg>
                   </p>
                   <span
-                    :href="`https://hotels.ndc.uz/storage/${files?.cadastre}`"
+                    :href="`https://api.hotels.ndc.uz/storage/${files?.cadastre}`"
                     class="text-base text-[#0D152C] flex justify-center gap-10 items-center mt-[50px]"
                   >
                     Davlat komissiyasining foydalanishga qabul qilish to‘g‘risida
@@ -235,7 +249,10 @@
                   </div>
                 </div>
               </a>
-              <a :href="`https://hotels.ndc.uz/storage/${files?.cadastre}`">
+              <a
+                v-if="files?.cadastre"
+                :href="`https://api.hotels.ndc.uz/storage/${files?.cadastre}`"
+              >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
                 >
@@ -359,7 +376,10 @@
               </a>
             </div>
             <div class="grid grid-cols-2 gap-6">
-              <a :href="`https://hotels.ndc.uz/storage/${files?.sanitation}`">
+              <a
+                v-if="files?.sanitation"
+                :href="`https://api.hotels.ndc.uz/storage/${files?.sanitation}`"
+              >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
                 >
@@ -482,7 +502,10 @@
                   </div>
                 </div>
               </a>
-              <a :href="`https://hotels.ndc.uz/storage/${files?.fire_safety}`">
+              <a
+                v-if="files?.fire_safety"
+                :href="`https://api.hotels.ndc.uz/storage/${files?.fire_safety}`"
+              >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
                 >
@@ -606,7 +629,10 @@
               </a>
             </div>
             <div class="grid grid-cols-1 gap-6">
-              <a :href="`https://hotels.ndc.uz/storage/${files?.certificate}`">
+              <a
+                v-if="files?.certificate"
+                :href="`https://api.hotels.ndc.uz/storage/${files?.certificate}`"
+              >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
                 >
@@ -811,20 +837,40 @@
                 />
               </a-form-model-item>
             </div>
+            <!-- <a-form-model-item
+              prop="region_id"
+              class="form-item w-full mb-0"
+              label="Qo'shimcha xizmatlar"
+            >
+              <a-select
+                mode="multiple"
+                v-model="form.additional_services"
+                placeholder="Xizmatni tanlang..."
+                class="w-full"
+              >
+                <a-select-option
+                  :value="service?.id"
+                  v-for="service in services"
+                  :key="service?.id"
+                >
+                  {{ service?.name?.uz }}</a-select-option
+                >
+              </a-select>
+            </a-form-model-item> -->
           </div>
-        </a-form-model>
-      </div>
-      <div class="map min-h-[700px]">
-        <yandex-map
-          @click="onClick"
-          :coords="coords"
-          :zoom="10"
-          style="height: 700px"
-          class="min-h-[700px]"
-        >
-          <ymap-marker :coords="coords" marker-id="123" hint-content="some hint" />
-        </yandex-map>
-        <!-- <iframe
+          <!-- </a-form-model> -->
+        </div>
+        <div class="map min-h-[350px] w-[50%] mx-auto">
+          <yandex-map
+            @click="onClick"
+            :coords="coords"
+            :zoom="10"
+            style="height: 350px"
+            class="min-h-[350px]"
+          >
+            <ymap-marker :coords="coords" marker-id="123" hint-content="some hint" />
+          </yandex-map>
+          <!-- <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.152394473258!2d69.24323909041384!3d41.32729942574873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b711d027053%3A0x2ec050777a5a6873!2z0JPQsNC90LPQsA!5e0!3m2!1sru!2s!4v1700216322446!5m2!1sru!2s"
           class="w-full"
           height="700"
@@ -833,57 +879,136 @@
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe> -->
+        </div>
+        <div
+          class="buttons flex justify-center gap-6"
+          v-if="files?.status != 'accepted' && files?.status != 'rejected'"
+        >
+          <button
+            @click="visible = true"
+            class="py-[13px] w-[366px] rounded-[8px] text-white bg-red-dark2 font-[verdana-400] text-base uppercase flex justify-center"
+          >
+            Rad etish
+          </button>
+          <button
+            @click="visibleAccept = true"
+            class="py-[13px] w-[366px] rounded-[8px] text-white bg-blue-bold font-[verdana-400] text-base uppercase flex justify-center"
+          >
+            Tasdiqlash va reyestrga kiritish
+          </button>
+        </div>
       </div>
-      <div
-        class="buttons flex justify-center gap-6"
-        v-if="files?.status != 'accepted' && files?.status != 'rejected'"
+      <a-modal
+        class="close-modal"
+        v-model="visible"
+        :body-style="{ borderRadius: '20px' }"
+        centered
+        :closable="false"
+        width="748px"
+        @ok="handleOk"
       >
-        <button
-          @click="visible = true"
-          class="py-[13px] w-[366px] rounded-[8px] text-white bg-red-dark2 font-[verdana-400] text-base uppercase flex justify-center"
-        >
-          Rad etish
-        </button>
-        <button
-          @click="submit('accept')"
-          class="py-[13px] w-[366px] rounded-[8px] text-white bg-blue-bold font-[verdana-400] text-base uppercase flex justify-center"
-        >
-          Tasdiqlash va reyestrga kiritish
-        </button>
-      </div>
-    </div>
-    <a-modal
-      class="close-modal"
-      v-model="visible"
-      :body-style="{ borderRadius: '20px' }"
-      centered
-      :closable="false"
-      width="748px"
-      @ok="handleOk"
-    >
-      <div>
-        <div class="head">
-          <h4 class="text-[24px] font-[verdana-700] text-blue-bold text-center mb-6">
-            Rad etishingizga aminmisiz?
-          </h4>
+        <div>
+          <div class="head">
+            <h4 class="text-[24px] font-[verdana-700] text-blue-bold text-center mb-6">
+              Rad etishingizga aminmisiz?
+            </h4>
+          </div>
+          <div>
+            <a-form-model-item
+              prop="reject_reasons"
+              class="form-item w-full mb-0"
+              label="Rad etish sabablari"
+            >
+              <a-select
+                mode="multiple"
+                v-model="form.reject_reasons"
+                placeholder="Xizmatni tanlang..."
+                class="w-full"
+              >
+                <a-select-option
+                  :value="reason?.id"
+                  v-for="reason in reasons"
+                  :key="reason?.id"
+                >
+                  {{ reason?.name?.uz }}</a-select-option
+                >
+              </a-select>
+            </a-form-model-item>
+          </div>
+          <div class="buttons grid grid-cols-2 gap-[30px] mt-4">
+            <button
+              @click="handleOk"
+              class="py-[13px] rounded-[8px] text-white bg-red-dark2 font-[verdana-400] text-base uppercase flex justify-center"
+            >
+              Bekor qilish
+            </button>
+            <button
+              @click="submit('cancel')"
+              class="py-[13px] rounded-[8px] text-white bg-blue-bold font-[verdana-400] text-base uppercase flex justify-center"
+            >
+              Ha, aminman
+            </button>
+          </div>
         </div>
-
-        <div class="buttons grid grid-cols-2 gap-[30px]">
-          <button
-            @click="handleOk"
-            class="py-[13px] rounded-[8px] text-white bg-red-dark2 font-[verdana-400] text-base uppercase flex justify-center"
-          >
-            Bekor qilish
-          </button>
-          <button
-            @click="submit('cancel')"
-            class="py-[13px] rounded-[8px] text-white bg-blue-bold font-[verdana-400] text-base uppercase flex justify-center"
-          >
-            Ha, aminman
-          </button>
+      </a-modal>
+      <a-modal
+        class="close-modal"
+        v-model="visibleAccept"
+        :body-style="{ borderRadius: '20px' }"
+        centered
+        :closable="false"
+        width="748px"
+        @ok="handleOk"
+      >
+        <div>
+          <div class="head">
+            <h4 class="text-[24px] font-[verdana-700] text-blue-bold text-center mb-6">
+              Tasdiqlash va reyestrga kiritish
+            </h4>
+          </div>
+          <div class="flex flex-col gap-4">
+            <a-form-model-item
+              prop="rooms"
+              class="form-item w-full mb-0"
+              label="Xonalar soni"
+            >
+              <a-input
+                v-model="form.rooms"
+                type="number"
+                placeholder="Xonalar soni..."
+                class="w-full"
+              />
+            </a-form-model-item>
+            <a-form-model-item
+              prop="places"
+              class="form-item w-full mb-0"
+              label="O'rinlar soni"
+            >
+              <a-input
+                v-model="form.places"
+                type="number"
+                placeholder="O'rinlar soni..."
+                class="w-full"
+              />
+            </a-form-model-item>
+          </div>
+          <div class="buttons grid grid-cols-2 gap-[30px] mt-4">
+            <button
+              @click="handleOkAccept"
+              class="py-[13px] rounded-[8px] text-white bg-red-dark2 font-[verdana-400] text-base uppercase flex justify-center"
+            >
+              Bekor qilish
+            </button>
+            <button
+              @click="submit('accept')"
+              class="py-[13px] rounded-[8px] text-white bg-blue-bold font-[verdana-400] text-base uppercase flex justify-center"
+            >
+              Tasdiqlash
+            </button>
+          </div>
         </div>
-      </div>
-    </a-modal>
+      </a-modal>
+    </a-form-model>
   </div>
 </template>
 <script>
@@ -891,6 +1016,7 @@ export default {
   data() {
     return {
       visible: false,
+      visibleAccept: false,
       coords: [41.311081, 69.240562],
       regions: [],
       form: {},
@@ -903,12 +1029,21 @@ export default {
         status: [
           { required: true, message: "This field is required", trigger: "change" },
         ],
+        reject_reasons: [
+          { required: true, message: "This field is required", trigger: "change" },
+        ],
         address: {
           ru: [{ required: true, message: "This field is required", trigger: "change" }],
           uz: [{ required: true, message: "This field is required", trigger: "change" }],
           en: [{ required: true, message: "This field is required", trigger: "change" }],
         },
+        rooms: [{ required: true, message: "This field is required", trigger: "change" }],
+        places: [
+          { required: true, message: "This field is required", trigger: "change" },
+        ],
       },
+      services: [],
+      reasons: [],
       form: {
         name: "",
         lat: "",
@@ -920,20 +1055,45 @@ export default {
           en: "",
           uz: "",
         },
+        additional_services: [],
+        reject_reasons: [],
+        rooms: null,
+        places: null,
       },
     };
   },
   mounted() {
     this.__GET_APPLICATIONS(this.$route.params.id);
     this.__GET_REGIONS();
+    this.__GET_SERVICES();
   },
   methods: {
     handleOk() {
       this.visible = false;
     },
-    submit(type) {
+    handleOkAccept() {
+      this.visibleAccept = false;
+    },
+    async submit(type) {
+      if (type == "accept") {
+        await delete this.rules["reject_reasons"];
+        this.rules.rooms = await [
+          { required: true, message: "This field is required", trigger: "change" },
+        ];
+        this.rules.places = await [
+          { required: true, message: "This field is required", trigger: "change" },
+        ];
+      } else {
+        if (!this.rules["reject_reasons"])
+          this.rules.reject_reasons = await [
+            { required: true, message: "This field is required", trigger: "change" },
+          ];
+        await delete this.rules["rooms"];
+        await delete this.rules["places"];
+      }
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
+          console.log(this.form);
           this.__EDIT_APPLICATIONS(this.form, type);
         } else {
         }
@@ -951,6 +1111,19 @@ export default {
       try {
         const data = await this.$store.dispatch("fetchRegions/getRegions");
         this.regions = data.data.data;
+      } catch (e) {}
+    },
+    async __GET_SERVICES() {
+      try {
+        const data = await this.$store.dispatch("fetchApplications/getServices");
+        console.log(data);
+        this.services = data.data;
+      } catch (e) {}
+    },
+    async __GET_SERVICES() {
+      try {
+        const data = await this.$store.dispatch("fetchReasons/getReasons");
+        this.reasons = data.data;
       } catch (e) {}
     },
     handleChange(info) {
@@ -985,13 +1158,13 @@ export default {
     },
     async __EDIT_APPLICATIONS(form, type) {
       try {
-        const data = await this.$store.dispatch("fetchApplications/editApp", {
-          id: this.$route.params.id,
-          data: form,
-          params: {
-            type: type,
-          },
-        });
+        // const data = await this.$store.dispatch("fetchApplications/editApp", {
+        //   id: this.$route.params.id,
+        //   data: form,
+        //   params: {
+        //     type: type,
+        //   },
+        // });
         this.$notification["success"]({
           message: "Success",
           description: "Ariza muvaffaqiyatli o'zgartirildi",
@@ -1036,16 +1209,26 @@ export default {
   background-color: transparent;
   height: 50px;
 }
-.form-item :deep(.ant-select-selection--single) {
+.form-item :deep(.ant-select-selection--single),
+.form-item :deep(.ant-select-selection) {
   border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   background-color: transparent;
-  height: 50px;
+  min-height: 50px;
   color: #5a5a5a;
   font-family: var(--v-regular);
   font-size: 16px;
   font-style: normal;
   line-height: 150%; /* 24px */
+}
+.form-item
+  :deep(.ant-select-selection--multiple .ant-select-selection__rendered > ul > li) {
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+.form-item :deep(.ant-select ul) {
+  max-width: 100%;
 }
 .form-item :deep(.ant-select-selection__rendered) {
   height: 100%;
