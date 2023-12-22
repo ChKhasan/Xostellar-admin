@@ -107,11 +107,10 @@ export default {
       },
       columnOrders: [
         {
-          title: "Reyestr raqami",
-          dataIndex: "indexId",
-          key: "indexId",
-          slots: { title: "customTitle" },
-          scopedSlots: { customRender: "indexId" },
+          title: "№",
+          dataIndex: "key",
+          key: "key",
+          customRender: (text, row, index) => <span>#{text}</span>,
           className: "column-text cursor-pointer",
         },
         {
@@ -169,15 +168,20 @@ export default {
           page_size: 16,
           ...this.$route.query,
         });
-        this.hotels = data.data.data.map((item) => {
+        const pageIndex = this.indexPage(data?.data?.current_page, data?.data?.per_page);
+        this.hotels = data.data.data.map((item, index) => {
           return {
             ...item,
             indexId: item.id,
+            key: index + pageIndex,
           };
         });
         this.totalPage = data.data.total;
         this.loading = false;
       } catch (e) {}
+    },
+    indexPage(current_page, per_page) {
+      return (current_page * 1 - 1) * per_page + 1;
     },
     async changeSearch(val, url, func) {
       if (val.target.value.length > 2) {
@@ -269,7 +273,7 @@ export default {
 :deep(.ant-table-tbody
     > tr:nth-child(2n):hover:not(.ant-table-expanded-row):not(.ant-table-row-selected)
     > td) {
- background: #002144;
+  background: #002144;
 }
 /* table  */
 .search-block {

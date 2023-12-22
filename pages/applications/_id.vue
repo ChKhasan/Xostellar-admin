@@ -1158,13 +1158,13 @@ export default {
     },
     async __EDIT_APPLICATIONS(form, type) {
       try {
-        // const data = await this.$store.dispatch("fetchApplications/editApp", {
-        //   id: this.$route.params.id,
-        //   data: form,
-        //   params: {
-        //     type: type,
-        //   },
-        // });
+        const data = await this.$store.dispatch("fetchApplications/editApp", {
+          id: this.$route.params.id,
+          data: form,
+          params: {
+            type: type,
+          },
+        });
         this.$notification["success"]({
           message: "Success",
           description: "Ariza muvaffaqiyatli o'zgartirildi",
