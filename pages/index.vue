@@ -126,6 +126,13 @@ export default {
       search: "",
       columnOrders: [
         {
+          title: "№",
+          dataIndex: "key",
+          key: "key",
+          customRender: (text) => `#${text}`,
+          className: "column-text cursor-pointer",
+        },
+        {
           title: "Reyestr raqami",
           dataIndex: "register_number",
           key: "register_number",
@@ -196,12 +203,20 @@ export default {
           page_size: 16,
           ...this.$route.query,
         });
-        this.hotels = data.data.data;
+        const pageIndex = this.indexPage(data?.data?.current_page, data?.data?.per_page);
+        this.hotels = data.data.data.map((item, index) => {
+          return {
+            ...item,
+            key: index + pageIndex,
+          };
+        });
         this.totalPage = data.data.total;
         this.loading = false;
       } catch (e) {}
     },
-
+    indexPage(current_page, per_page) {
+      return (current_page * 1 - 1) * per_page + 1;
+    },
     async changeSearch(val, url, func) {
       if (val.target.value.length > 2) {
         if (this.$route.query?.search != val.target.value) {

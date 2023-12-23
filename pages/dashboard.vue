@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="max-w-[1536px] mx-auto py-10">
-    <!-- <div class="flex flex-col gap-[10px]">
+    <div class="flex flex-col gap-[10px]">
       <div class="grid grid-cols-3 gap-[10px]">
         <div class="py-3 bg-white rounded-[10px] px-6 flex flex-col gap-3">
           <p class="text-base font-semibold">
@@ -145,12 +145,11 @@
           ></apexchart>
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 <script>
 export default {
-  middleware: "dashboard",
   data() {
     return {
       dashboard: {},
@@ -217,7 +216,6 @@ export default {
   },
   async mounted() {
     this.__GET_DASHBOARD();
-
   },
   methods: {
     async __GET_DASHBOARD() {
