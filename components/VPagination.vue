@@ -4,7 +4,7 @@
       <button
         @click="prevPage"
         :class="{ 'opacity-10 pointer-events-none': current == 1 }"
-        class="flex gap-[10px] w-[236px] h-12 border border-solid border-black rounded-[6px] justify-center items-center text-black font-[verdana-400] text-base"
+        class="flex gap-[10px] w-[236px] 2xl:w-[200px] h-12 border border-solid border-black rounded-[6px] justify-center items-center text-black font-[verdana-400] text-base"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@
           'opacity-10 pointer-events-none':
             totalPage / ((current + 1) * params.pageSize) < 1,
         }"
-        class="flex gap-[10px] w-[236px] h-12 border border-solid border-blue-bold bg-blue-bold rounded-[6px] justify-center items-center text-white font-[verdana-400] text-base"
+        class="flex gap-[10px] w-[236px] 2xl:w-[200px] h-12 border border-solid border-blue-bold bg-blue-bold rounded-[6px] justify-center items-center text-white font-[verdana-400] text-base"
       >
         Keyingi
         <svg

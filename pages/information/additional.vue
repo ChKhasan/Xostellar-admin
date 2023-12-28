@@ -5,21 +5,21 @@
         <button
           :class="{ 'bg-blue-bold text-white': $route.name == 'information' }"
           @click="$router.push('/information')"
-          class="w-[366px] h-12 flex uppercase justify-center items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-700] text-blue-bold text-base"
+          class="w-[366px] 2xl:w-auto 2xl:px-6 h-12 flex uppercase justify-center items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-700] text-blue-bold text-base"
         >
           Viloyatlar
         </button>
         <button
           :class="{ 'bg-blue-bold text-white': $route.name == 'information-additional' }"
           @click="$router.push('/information/additional')"
-          class="w-[366px] h-12 flex uppercase justify-center items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-700] text-blue-bold text-base"
+          class="w-[366px] 2xl:w-auto 2xl:px-6 h-12 flex uppercase justify-center items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-700] text-blue-bold text-base"
         >
           Qo‘shimcha
         </button>
         <button
           :class="{ 'bg-blue-bold text-white': $route.name == 'information-reasons' }"
           @click="$router.push('/information/reasons')"
-          class="w-[366px] h-12 flex uppercase justify-center items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-700] text-blue-bold text-base"
+          class="w-[366px] 2xl:w-auto 2xl:px-6 h-12 flex uppercase justify-center items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-700] text-blue-bold text-base"
         >
           Rad etish sabablari
         </button>

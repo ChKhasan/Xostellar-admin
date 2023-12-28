@@ -275,7 +275,7 @@
           </div>
         </div>
       </div>
-      <div class="body ml-[336px]">
+      <div class="body ml-[336px] 2xl:px-4">
         <Nuxt />
       </div>
     </div>
