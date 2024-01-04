@@ -26,7 +26,7 @@
         @click="visibleUser = true"
         class="px-6 h-12 flex uppercase justify-center gap-5 items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-400] bg-blue-bold text-white text-base"
       >
-        Yangi xabar foydalanuvchi yaratish
+        Yangi foydalanuvchi yaratish
         <svg
           width="24"
           height="24"
