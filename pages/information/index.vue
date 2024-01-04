@@ -60,7 +60,7 @@
                 />
               </svg>
             </button> -->
-            <button class="edit" @click="editData(text)">
+            <button class="edit" v-if="$store.state.profileInfo?.role != 'committee'" @click="editData(text)">
               <svg
                 width="16"
                 height="16"

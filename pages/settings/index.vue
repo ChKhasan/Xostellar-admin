@@ -23,6 +23,7 @@
         </button>
       </div>
       <button
+        v-if="$store.state.profileInfo?.role != 'region_subadmin'"
         @click="visibleUser = true"
         class="px-6 h-12 flex uppercase justify-center gap-5 items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-400] bg-blue-bold text-white text-base"
       >
@@ -79,7 +80,11 @@
             {{ text ? "Aktiv" : "To‘xtatilgan" }}</span
           >
         </span>
-        <span slot="indexId" slot-scope="text">
+        <span
+          slot="indexId"
+          slot-scope="text"
+          v-if="$store.state.profileInfo?.role != 'committee'"
+        >
           <span class="flex gap-5 justify-end">
             <button class="edit" @click="editData(text)">
               <svg
@@ -212,7 +217,7 @@
                   <a-input v-model="form.name" placeholder="F.I.SH" />
                 </a-form-model-item>
               </div>
-              <div class="grid grid-cols-1 w-full">
+              <div class="grid grid-cols-1 w-full" v-if="regionHandle">
                 <a-form-model-item
                   prop="region_id"
                   class="form-item w-full mb-0"
@@ -229,6 +234,19 @@
                       :key="region?.id"
                     >
                       {{ region?.name?.uz }}</a-select-option
+                    >
+                  </a-select>
+                </a-form-model-item>
+              </div>
+              <div class="grid grid-cols-1 w-full">
+                <a-form-model-item class="form-item w-full mb-0" label="Admin turi">
+                  <a-select v-model="form.role" placeholder="Admin turi" class="w-full">
+                    <a-select-option
+                      :value="admin?.value"
+                      v-for="admin in adminTypes"
+                      :key="admin?.value"
+                    >
+                      {{ admin?.label }}</a-select-option
                     >
                   </a-select>
                 </a-form-model-item>
@@ -275,6 +293,24 @@ export default {
   },
   data() {
     return {
+      adminTypes: [
+        {
+          label: "Admin",
+          value: "admin",
+        },
+        {
+          label: "Viloyat bo'yicha admin",
+          value: "region_admin",
+        },
+        {
+          label: "Qo'mita rahbariyati",
+          value: "committee",
+        },
+        {
+          label: "Viloyat bo'yicha admin 2",
+          value: "region_subadmin",
+        },
+      ],
       visibleUser: false,
       tabHandler: true,
       visible: false,
@@ -287,17 +323,15 @@ export default {
         name: "",
         pin: "",
         region_id: undefined,
+        role: undefined,
       },
-
+      regionHandle: true,
       rules: {
         name: [{ required: true, message: "This field is required", trigger: "change" }],
-        pin: [
-          { required: true, message: "This field is required", trigger: "change" },
-        ],
+        pin: [{ required: true, message: "This field is required", trigger: "change" }],
         region_id: [
           { required: true, message: "This field is required", trigger: "change" },
         ],
-     
       },
       users: [],
       userInfo: {},
@@ -402,6 +436,11 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    adminTypeHandle() {
+      return this.form.role;
+    },
   },
   mounted() {
     this.__GET_USERS();
@@ -511,6 +550,28 @@ export default {
           password: "",
           password_confirmation: "",
         };
+      }
+    },
+    adminTypeHandle(val) {
+      switch (val) {
+        case "admin":
+          delete this.form.region_id;
+          this.regionHandle = false;
+          break;
+        case "committee":
+          delete this.form.region_id;
+          this.regionHandle = false;
+          break;
+        case "region_admin":
+          this.form.region_id = undefined;
+          this.regionHandle = true;
+
+          break;
+        case "region_subadmin":
+          this.form.region_id = undefined;
+          this.regionHandle = true;
+
+          break;
       }
     },
   },

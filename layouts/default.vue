@@ -269,7 +269,7 @@
                   class="h-8 w-8 rounded-[6px] overflow-hidden"
                   src="../assets/images/avatar.png"
                   alt=""
-                />{{ $store.state.profileInfo?.username }}
+                />{{ $store.state.profileInfo?.name }}
               </button>
             </a-popover>
           </div>
