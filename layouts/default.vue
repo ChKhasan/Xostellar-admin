@@ -321,6 +321,8 @@ export default {
   background: linear-gradient(215deg, #012f46 0%, #010d1d 47.19%, #01354c 141.84%);
   /* 10 */
   box-shadow: 0px 4.13688px 12.41065px 2.06844px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+
 }
 .logout-btn {
   background: linear-gradient(215deg, #012f46 0%, #010d1d 47.19%, #01354c 141.84%);
