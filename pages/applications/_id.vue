@@ -1093,7 +1093,6 @@ export default {
       }
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
-          console.log(this.form);
           this.__EDIT_APPLICATIONS(this.form, type);
         } else {
         }
@@ -1116,7 +1115,6 @@ export default {
     async __GET_SERVICES() {
       try {
         const data = await this.$store.dispatch("fetchApplications/getServices");
-        console.log(data);
         this.services = data.data;
       } catch (e) {}
     },
