@@ -73,7 +73,7 @@
         :pagination="false"
         align="center"
       >
-        <span slot="id" slot-scope="text">
+        <span slot="id" slot-scope="text"  v-if="$store.state.profileInfo?.role != 'committee'">
           <span class="flex gap-5 justify-end">
             <!-- <button>
               <svg
@@ -100,7 +100,11 @@
               </svg>
             </button> -->
 
-            <button class="edit" v-if="$store.state.profileInfo?.role != 'committee'" @click="editData(text)">
+            <button
+              class="edit"
+             
+              @click="editData(text)"
+            >
               <svg
                 width="16"
                 height="16"
@@ -396,6 +400,7 @@
 import VPagination from "@/components/VPagination.vue";
 export default {
   name: "IndexPage",
+  middleware: "admin",
   head() {
     return {
       title: "Viloyatlar",

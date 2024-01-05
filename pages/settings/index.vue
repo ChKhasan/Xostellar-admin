@@ -15,6 +15,10 @@
           Foydalanuvchilar
         </button>
         <button
+          v-if="
+            $store.state.profileInfo?.role == 'admin' ||
+            $store.state.profileInfo?.role == 'committee'
+          "
           :class="{ 'bg-blue-bold text-white': $route.name == 'settings-messages' }"
           @click="$router.push('/settings/messages')"
           class="w-[366px] h-12 flex uppercase justify-center items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-400] text-blue-bold text-base"
@@ -23,7 +27,10 @@
         </button>
       </div>
       <button
-        v-if="$store.state.profileInfo?.role != 'region_subadmin'"
+        v-if="
+          $store.state.profileInfo?.role != 'region_subadmin' &&
+          $store.state.profileInfo?.role != 'committee'
+        "
         @click="visibleUser = true"
         class="px-6 h-12 flex uppercase justify-center gap-5 items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-400] bg-blue-bold text-white text-base"
       >
@@ -69,7 +76,7 @@
         align="center"
       >
         <span slot="name" slot-scope="text"> {{ text?.name }} {{ text?.username }} </span>
-        <span slot="role" slot-scope="text"> {{ text ? text : "----" }} </span>
+        <span slot="role" slot-scope="text">  {{ text ? adminTable[text] : "----" }} </span>
         <span slot="status" slot-scope="text">
           <span
             :class="{
@@ -217,7 +224,10 @@
                   <a-input v-model="form.name" placeholder="F.I.SH" />
                 </a-form-model-item>
               </div>
-              <div class="grid grid-cols-1 w-full" v-if="regionHandle">
+              <div
+                class="grid grid-cols-1 w-full"
+                v-if="regionHandle && $store.state.profileInfo.role == 'admin'"
+              >
                 <a-form-model-item
                   prop="region_id"
                   class="form-item w-full mb-0"
@@ -238,7 +248,10 @@
                   </a-select>
                 </a-form-model-item>
               </div>
-              <div class="grid grid-cols-1 w-full">
+              <div
+                class="grid grid-cols-1 w-full"
+                v-if="$store.state.profileInfo.role == 'admin'"
+              >
                 <a-form-model-item class="form-item w-full mb-0" label="Admin turi">
                   <a-select v-model="form.role" placeholder="Admin turi" class="w-full">
                     <a-select-option
@@ -311,6 +324,12 @@ export default {
           value: "region_subadmin",
         },
       ],
+      adminTable: {
+        admin: "Tizim ma'muri",
+        region_subadmin: "Bo'lim hodimi",
+        region_admin: "Bo'lim ma'muri",
+        committee: "Qo'mita rahbariyati",
+      },
       visibleUser: false,
       tabHandler: true,
       visible: false,
@@ -444,7 +463,16 @@ export default {
   },
   mounted() {
     this.__GET_USERS();
-    this.__GET_REGIONS();
+    if (this.$store.state.profileInfo.role == "admin") {
+      this.__GET_REGIONS();
+      this.form.region_id = undefined;
+      this.form.role = undefined;
+    }
+    if (this.$store.state.profileInfo.role == "region_admin") {
+      this.__GET_REGIONS();
+      delete this.form.region_id;
+      delete this.form.role;
+    }
   },
   methods: {
     handleOk() {
