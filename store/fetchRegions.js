@@ -25,4 +25,12 @@ export const actions = {
     });
     return res;
   },
+  async postRegions({}, payload) {
+    const res = await this.$axios.$post(`/regions`, payload.data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
+      },
+    });
+    return res;
+  },
 };

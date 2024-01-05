@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-[1536px] mx-auto py-10">
-    <div class="search mb-[60px]">
+    <div class="search mb-[60px] flex justify-between">
       <div class="flex gap-6 justify-start">
         <button
           :class="{ 'bg-blue-bold text-white': $route.name == 'information' }"
@@ -24,6 +24,41 @@
           Rad etish sabablari
         </button>
       </div>
+      <button
+        @click="visible = true"
+        class="px-6 h-12 flex uppercase justify-center gap-5 items-center border border-solid border-blue-bold rounded-[8px] font-[verdana-400] bg-blue-bold text-white text-base"
+      >
+        Qo'shish
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M8 12H16"
+            stroke="white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M12 16V8"
+            stroke="white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z"
+            stroke="white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
     </div>
     <div class="body">
       <a-table
@@ -34,7 +69,11 @@
         :pagination="false"
         align="center"
       >
-        <span slot="indexId" slot-scope="text" v-if="$store.state.profileInfo?.role != 'committee'">
+        <span
+          slot="indexId"
+          slot-scope="text"
+          v-if="$store.state.profileInfo?.role != 'committee'"
+        >
           <span class="flex gap-5 justify-end">
             <!-- <button>
               <svg
@@ -60,7 +99,7 @@
                 />
               </svg>
             </button> -->
-            <button class="edit"  @click="editData(text)">
+            <button class="edit" @click="editData(text)">
               <svg
                 width="16"
                 height="16"
@@ -121,7 +160,7 @@
       <div>
         <div class="head">
           <h4 class="text-[24px] font-[verdana-700] text-white text-center">
-            {{ title.uz }}
+            {{ editId ? title.uz : "Viloyat qo'shish" }}
           </h4>
         </div>
         <div class="body pt-[28px] mb-12 flex justify-center">
@@ -129,37 +168,29 @@
             <div class="flex flex-col gap-10">
               <div class="grid grid-cols-1 w-full">
                 <a-form-model-item
-                  prop="deadline"
+                  prop="name.uz"
                   class="form-item w-full mb-0"
                   label="O‘Z"
                 >
                   <a-input
                     v-model="form.name.uz"
-                    placeholder="Klassifikatorning o‘zbekcha nomini kiriting"
+                    placeholder="Viloyatni o‘zbekcha nomini kiriting"
                   />
                 </a-form-model-item>
               </div>
               <div class="grid grid-cols-1 w-full">
-                <a-form-model-item
-                  prop="deadline"
-                  class="form-item w-full mb-0"
-                  label="RU"
-                >
+                <a-form-model-item class="form-item w-full mb-0" label="RU">
                   <a-input
                     v-model="form.name.ru"
-                    placeholder="Klassifikatorning ruscha nomini kiriting"
+                    placeholder="Viloyatni ruscha nomini kiriting"
                   />
                 </a-form-model-item>
               </div>
               <div class="grid grid-cols-1 w-full">
-                <a-form-model-item
-                  prop="deadline"
-                  class="form-item w-full mb-0"
-                  label="EN"
-                >
+                <a-form-model-item class="form-item w-full mb-0" label="EN">
                   <a-input
                     v-model="form.name.en"
-                    placeholder="Klassifikatorning inglizcha nomini kiriting"
+                    placeholder="Viloyatni inglizcha nomini kiriting"
                   />
                 </a-form-model-item>
               </div>
@@ -204,8 +235,11 @@ export default {
       editId: null,
       loading: false,
       text: "",
-      form: {},
-      rules: {},
+      rules: {
+        name: {
+          uz: [{ required: true, message: "This field is required", trigger: "change" }],
+        },
+      },
       totalPage: null,
       columnOrders: [
         {
@@ -267,7 +301,11 @@ export default {
       this.__GET_REGION(id);
     },
     submit() {
-      this.__EDIT_REGION(this.form);
+      this.$refs.ruleForm.validate((valid) => {
+        if (valid) {
+          this.editId ? this.__EDIT_REGION(this.form) : this.__POST_REGION(this.form);
+        }
+      });
     },
     async __GET_REGIONS() {
       try {
@@ -315,8 +353,39 @@ export default {
         });
       }
     },
+    async __POST_REGION(form) {
+      try {
+        const data = await this.$store.dispatch("fetchRegions/postRegions", {
+          data: form,
+        });
+        this.__GET_REGIONS();
+        this.visible = false;
+        this.$notification["success"]({
+          message: "Success",
+          description: "Viloyat muvaffaqiyatli qo'shildi",
+        });
+      } catch (e) {
+        this.$notification["error"]({
+          message: "Error",
+          description: e.response.statusText,
+        });
+      }
+    },
   },
-
+  watch: {
+    visible(val) {
+      if (!val) {
+        this.editId = null;
+        this.form = {
+          name: {
+            ru: "",
+            en: "",
+            uz: "",
+          },
+        };
+      }
+    },
+  },
   components: {
     VPagination,
   },
