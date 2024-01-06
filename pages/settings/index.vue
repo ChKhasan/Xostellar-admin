@@ -217,6 +217,22 @@
         <div class="body pt-[28px] mb-12 flex justify-center">
           <a-form-model class="w-full" :model="form" ref="ruleForm" :rules="rules">
             <div class="flex flex-col gap-10">
+              <div
+                class="grid grid-cols-1 w-full"
+                v-if="$store.state.profileInfo.role == 'admin'"
+              >
+                <a-form-model-item class="form-item w-full mb-0" label="Admin turi"  prop="role">
+                  <a-select v-model="form.role" placeholder="Admin turi" class="w-full">
+                    <a-select-option
+                      :value="admin?.value"
+                      v-for="admin in adminTypes"
+                      :key="admin?.value"
+                    >
+                      {{ admin?.label }}</a-select-option
+                    >
+                  </a-select>
+                </a-form-model-item>
+              </div>
               <div class="grid grid-cols-1 w-full">
                 <a-form-model-item
                   prop="name"
@@ -250,22 +266,7 @@
                   </a-select>
                 </a-form-model-item>
               </div>
-              <div
-                class="grid grid-cols-1 w-full"
-                v-if="$store.state.profileInfo.role == 'admin'"
-              >
-                <a-form-model-item class="form-item w-full mb-0" label="Admin turi">
-                  <a-select v-model="form.role" placeholder="Admin turi" class="w-full">
-                    <a-select-option
-                      :value="admin?.value"
-                      v-for="admin in adminTypes"
-                      :key="admin?.value"
-                    >
-                      {{ admin?.label }}</a-select-option
-                    >
-                  </a-select>
-                </a-form-model-item>
-              </div>
+              
               <div class="grid grid-cols-1 w-full">
                 <a-form-model-item
                   prop="pin"
@@ -346,9 +347,10 @@ export default {
         region_id: undefined,
         role: undefined,
       },
-      regionHandle: true,
+      regionHandle: false,
       rules: {
         name: [{ required: true, message: "This field is required", trigger: "change" }],
+        role: [{ required: true, message: "This field is required", trigger: "change" }],
         pin: [{ required: true, message: "This field is required", trigger: "change" }],
         region_id: [
           { required: true, message: "This field is required", trigger: "change" },
@@ -490,6 +492,13 @@ export default {
       this.__EDIT_USERS({ is_active: this.userInfo?.is_active == 1 ? 0 : 1 });
     },
     submitUser() {
+      const data = {
+        ...this.form,
+      };
+      if (!this.form.region_id) {
+        delete data.region_id;
+      }
+ 
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
           if (this.form.password != this.form.password_confirmation) {
@@ -498,7 +507,7 @@ export default {
               description: "Пожалуйста, перепроверьте пароль",
             });
           } else {
-            this.__POST_USERS(this.form);
+            this.__POST_USERS(data);
           }
         }
       });
@@ -583,24 +592,23 @@ export default {
       }
     },
     adminTypeHandle(val) {
+      this.form.region_id = undefined;
       switch (val) {
         case "admin":
-          delete this.form.region_id;
+          // delete this.form.region_id;
           this.regionHandle = false;
           break;
         case "committee":
-          delete this.form.region_id;
+          // delete this.form.region_id;
           this.regionHandle = false;
           break;
         case "region_admin":
-          this.form.region_id = undefined;
+          // this.form.region_id = undefined;
           this.regionHandle = true;
-
           break;
         case "region_subadmin":
-          this.form.region_id = undefined;
+          // this.form.region_id = undefined;
           this.regionHandle = true;
-
           break;
       }
     },
