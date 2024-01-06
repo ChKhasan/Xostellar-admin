@@ -76,7 +76,9 @@
         align="center"
       >
         <span slot="name" slot-scope="text"> {{ text?.name }} {{ text?.username }} </span>
-        <span slot="role" slot-scope="text">  {{ text ? adminTable[text] : "----" }} </span>
+        <span slot="role" slot-scope="text">
+          {{ text ? adminTable[text] : "----" }}
+        </span>
         <span slot="status" slot-scope="text">
           <span
             :class="{
@@ -308,11 +310,11 @@ export default {
     return {
       adminTypes: [
         {
-          label: "Admin",
+          label: "Tizim ma'muri",
           value: "admin",
         },
         {
-          label: "Viloyat bo'yicha admin",
+          label: "Bo'lim ma'muri",
           value: "region_admin",
         },
         {
@@ -320,7 +322,7 @@ export default {
           value: "committee",
         },
         {
-          label: "Viloyat bo'yicha admin 2",
+          label: "Bo'lim hodimi",
           value: "region_subadmin",
         },
       ],
