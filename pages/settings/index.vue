@@ -92,7 +92,10 @@
         <span
           slot="indexId"
           slot-scope="text"
-          v-if="$store.state.profileInfo?.role != 'committee'"
+          v-if="
+            $store.state.profileInfo?.role != 'committee' &&
+            $store.state.profileInfo?.role != 'region_subadmin'
+          "
         >
           <span class="flex gap-5 justify-end">
             <button class="edit" @click="editData(text)">
@@ -221,8 +224,16 @@
                 class="grid grid-cols-1 w-full"
                 v-if="$store.state.profileInfo.role == 'admin'"
               >
-                <a-form-model-item class="form-item w-full mb-0" label="Admin turi"  prop="role">
-                  <a-select v-model="form.role" placeholder="Admin turi" class="w-full">
+                <a-form-model-item
+                  class="form-item w-full mb-0"
+                  label="Foydalanuvchi turi"
+                  prop="role"
+                >
+                  <a-select
+                    v-model="form.role"
+                    placeholder="Foydalanuvchi turini tanlang"
+                    class="w-full"
+                  >
                     <a-select-option
                       :value="admin?.value"
                       v-for="admin in adminTypes"
@@ -249,11 +260,11 @@
                 <a-form-model-item
                   prop="region_id"
                   class="form-item w-full mb-0"
-                  label="Viloyat"
+                  label="Hudud"
                 >
                   <a-select
                     v-model="form.region_id"
-                    placeholder="Viloyot nomi"
+                    placeholder="Hududni tanlang"
                     class="w-full"
                   >
                     <a-select-option
@@ -266,7 +277,7 @@
                   </a-select>
                 </a-form-model-item>
               </div>
-              
+
               <div class="grid grid-cols-1 w-full">
                 <a-form-model-item
                   prop="pin"
@@ -315,7 +326,7 @@ export default {
           value: "admin",
         },
         {
-          label: "Bo'lim ma'muri",
+          label: "Boshqarma rahbariyati",
           value: "region_admin",
         },
         {
@@ -323,7 +334,7 @@ export default {
           value: "committee",
         },
         {
-          label: "Bo'lim hodimi",
+          label: "Boshqarma hodimi",
           value: "region_subadmin",
         },
       ],
@@ -498,7 +509,7 @@ export default {
       if (!this.form.region_id) {
         delete data.region_id;
       }
- 
+
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
           if (this.form.password != this.form.password_confirmation) {

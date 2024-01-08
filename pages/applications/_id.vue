@@ -33,6 +33,21 @@
           Orqaga
         </button>
       </div>
+      <div class="mt-10" v-if="files?.reject_reasons?.length > 0">
+        <div
+          class="title w-full flex justify-center bg-blue-grey py-[10px] rounded-[10px]"
+        >
+          <h1 class="font-[verdana-700] text-[24px] text-white">Rad etish sabablari</h1>
+        </div>
+        <ul class="mt-8">
+          <li
+            class="text-[red] font-[verdana-400] text-base"
+            v-for="(reason, index) in files?.reject_reasons"
+          >
+            {{ index + 1 }}. {{ reason?.name?.uz }}
+          </li>
+        </ul>
+      </div>
       <div class="body mt-10 flex flex-col gap-10">
         <div
           class="title w-full flex justify-center bg-blue-grey py-[10px] rounded-[10px]"
@@ -1081,6 +1096,27 @@ export default {
     async submit(type) {
       if (type == "accept") {
         await delete this.rules["reject_reasons"];
+        this.rules = {
+          lat: [{ required: true, message: "This field is required", trigger: "change" }],
+          lon: [{ required: true, message: "This field is required", trigger: "change" }],
+          name: [
+            { required: true, message: "This field is required", trigger: "change" },
+          ],
+          status: [
+            { required: true, message: "This field is required", trigger: "change" },
+          ],
+          address: {
+            ru: [
+              { required: true, message: "This field is required", trigger: "change" },
+            ],
+            uz: [
+              { required: true, message: "This field is required", trigger: "change" },
+            ],
+            en: [
+              { required: true, message: "This field is required", trigger: "change" },
+            ],
+          },
+        };
         this.rules.rooms = await [
           { required: true, message: "This field is required", trigger: "change" },
         ];
@@ -1088,6 +1124,7 @@ export default {
           { required: true, message: "This field is required", trigger: "change" },
         ];
       } else {
+        this.rules = {};
         if (!this.rules["reject_reasons"])
           this.rules.reject_reasons = await [
             { required: true, message: "This field is required", trigger: "change" },
