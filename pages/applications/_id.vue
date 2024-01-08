@@ -53,21 +53,23 @@
           class="title w-full flex justify-center bg-blue-grey py-[10px] rounded-[10px]"
         >
           <h1 class="font-[verdana-700] text-[24px] text-white">
-            Xostellar, oʼtovli va chodirli oromgohlar  ma’lumotlari
+            Xostellar, oʼtovli va chodirli oromgohlar ma’lumotlari
           </h1>
         </div>
         <div class="grid grid-cols-3 gap-6">
           <div
             class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
           >
-            <p class="text-white font-[verdana-400] text-base">Xostellar, oʼtovli va chodirli oromgohlar  nomi</p>
+            <p class="text-white font-[verdana-400] text-base">
+              Xostellar, oʼtovli va chodirli oromgohlar nomi
+            </p>
             <h5 class="text-[24px] text-white font-bold">{{ info?.name }}</h5>
           </div>
           <div
             class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
           >
             <p class="text-white font-[verdana-400] text-base">
-              Xostellar, oʼtovli va chodirli oromgohlar  joylashgan hudud
+              Xostellar, oʼtovli va chodirli oromgohlar joylashgan hudud
             </p>
             <h5 class="text-[24px] text-white font-bold">
               {{ info?.region?.name?.uz || "----" }}
@@ -77,7 +79,7 @@
             class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
           >
             <p class="text-white font-[verdana-400] text-base">
-              Xostellar, oʼtovli va chodirli oromgohlar  manzili
+              Xostellar, oʼtovli va chodirli oromgohlar manzili
             </p>
             <h5 class="text-[24px] text-white font-bold">
               {{ info?.address_from_application }}
@@ -101,7 +103,7 @@
             class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
           >
             <p class="text-white font-[verdana-400] text-base">
-              Xostellar, oʼtovli va chodirli oromgohlar  rahbari
+              Xostellar, oʼtovli va chodirli oromgohlar rahbari
             </p>
             <h5 class="text-[24px] text-white font-bold">
               {{ info?.director_full_name }}
@@ -113,7 +115,7 @@
             class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
           >
             <p class="text-white font-[verdana-400] text-base">
-              Xostellar, oʼtovli va chodirli oromgohlar  telefon raqamlari
+              Xostellar, oʼtovli va chodirli oromgohlar telefon raqamlari
             </p>
             <h5 class="text-[24px] text-white font-bold">{{ info?.phone_number }}</h5>
           </div>
@@ -137,7 +139,7 @@
             <div class="grid grid-cols-2 gap-6">
               <a
                 v-if="files?.state_certificate"
-                :href="`https://api.hotels.ndc.uz/storage/${files?.state_certificate}`"
+                :href="`https://hotels.ndc.uz/storage/${files?.state_certificate}`"
               >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
@@ -169,7 +171,7 @@
                     </svg>
                   </p>
                   <span
-                    :href="`https://api.hotels.ndc.uz/storage/${files?.cadastre}`"
+                    :href="`https://hotels.ndc.uz/storage/${files?.cadastre}`"
                     class="text-base text-[#0D152C] flex justify-center gap-10 items-center mt-[50px]"
                   >
                     Davlat komissiyasining foydalanishga qabul qilish to‘g‘risida
@@ -265,7 +267,7 @@
               </a>
               <a
                 v-if="files?.cadastre"
-                :href="`https://api.hotels.ndc.uz/storage/${files?.cadastre}`"
+                :href="`https://hotels.ndc.uz/storage/${files?.cadastre}`"
               >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
@@ -392,7 +394,7 @@
             <div class="grid grid-cols-2 gap-6">
               <a
                 v-if="files?.sanitation"
-                :href="`https://api.hotels.ndc.uz/storage/${files?.sanitation}`"
+                :href="`https://hotels.ndc.uz/storage/${files?.sanitation}`"
               >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
@@ -518,7 +520,7 @@
               </a>
               <a
                 v-if="files?.fire_safety"
-                :href="`https://api.hotels.ndc.uz/storage/${files?.fire_safety}`"
+                :href="`https://hotels.ndc.uz/storage/${files?.fire_safety}`"
               >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
@@ -645,7 +647,7 @@
             <div class="grid grid-cols-1 gap-6">
               <a
                 v-if="files?.certificate"
-                :href="`https://api.hotels.ndc.uz/storage/${files?.certificate}`"
+                :href="`https://hotels.ndc.uz/storage/${files?.certificate}`"
               >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
