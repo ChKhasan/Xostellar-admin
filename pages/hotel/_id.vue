@@ -199,8 +199,7 @@
         >
           <p class="text-white font-[verdana-400] text-base">Xostellar egasi</p>
           <h5 class="text-[24px] text-white font-bold">
-            {{ info?.director_surname }} {{ info?.director_name }}
-            {{ info?.director_fathers_name }}
+            {{ info?.director_full_name }} 
           </h5>
         </div>
       </div>

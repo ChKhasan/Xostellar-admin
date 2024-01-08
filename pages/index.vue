@@ -65,10 +65,7 @@
           >
         </span>
 
-        <span slot="derictor" slot-scope="text"
-          >{{ text?.director_surname }} {{ text?.director_name }}
-          {{ text?.director_fathers_name }}</span
-        >
+        <span slot="derictor" slot-scope="text">{{ text?.director_full_name }} </span>
         <span slot="place" slot-scope="text">{{ text?.ru }}</span>
         <span
           slot="phone_number"
