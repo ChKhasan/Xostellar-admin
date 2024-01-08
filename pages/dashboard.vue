@@ -43,7 +43,13 @@
           }}
         </h4>
       </div>
-      <div class="grid grid-cols-4 gap-[10px]">
+      <div
+        class="grid grid-cols-4 gap-[10px]"
+        v-if="
+          $store.state.profileInfo?.role != 'region_admin' &&
+          $store.state.profileInfo?.role != 'region_subadmin'
+        "
+      >
         <div class="py-3 bg-white rounded-[10px] px-6 flex flex-col gap-3">
           <p class="text-base font-semibold text-[#3C4BDC]">Yangi</p>
           <h5 class="text-[24px] font-bold py-1">
@@ -133,7 +139,13 @@
           </ul>
         </div>
       </div>
-      <div class="grid grid-cols-2 h-full">
+      <div
+        class="grid grid-cols-2 h-full"
+        v-if="
+          $store.state.profileInfo?.role != 'region_admin' &&
+          $store.state.profileInfo?.role != 'region_subadmin'
+        "
+      >
         <div class="py-[50px] h-full bg-white rounded-[10px] px-10">
           <apexchart
             v-if="chartOptionsHorizontal.xaxis.categories.length > 0"
