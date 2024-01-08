@@ -20,7 +20,7 @@
                   <nuxt-link
                     to="/"
                     :class="{
-                      active: $route.name == 'index' || $route.name.includes('hotel'),
+                      active: $route.name == 'index' || $route.name?.includes('hotel'),
                     }"
                     class="font-[verdana-400] text-base leading-6 text-white flex gap-6 hover:text-white px-6 py-3 rounded-[6px]"
                     ><svg
@@ -102,7 +102,7 @@
                     to="/dashboard"
                     :class="{
                       active:
-                        $route.name == 'dashboard' || $route.name.includes('dashboard'),
+                        $route.name == 'dashboard' || $route.name?.includes('dashboard'),
                     }"
                     class="font-[verdana-400] text-base leading-6 text-white flex gap-6 hover:text-white px-6 py-3 rounded-[6px]"
                     ><svg
@@ -125,7 +125,7 @@
                     :class="{
                       active:
                         $route.name == 'applications' ||
-                        $route.name.includes('applications'),
+                        $route.name?.includes('applications'),
                     }"
                     class="font-[verdana-400] text-base leading-6 text-white flex gap-6 hover:text-white px-6 py-3 rounded-[6px]"
                     ><svg
@@ -182,7 +182,7 @@
                     :class="{
                       active:
                         $route.name == 'information' ||
-                        $route.name.includes('information'),
+                        $route.name?.includes('information'),
                     }"
                     class="font-[verdana-400] text-base leading-6 text-white flex gap-6 hover:text-white px-6 py-3 rounded-[6px]"
                   >
@@ -233,7 +233,7 @@
                     to="/settings"
                     :class="{
                       active:
-                        $route.name == 'settings' || $route.name.includes('settings'),
+                        $route.name == 'settings' || $route.name?.includes('settings'),
                     }"
                     class="font-[verdana-400] text-base leading-6 text-white flex gap-6 hover:text-white px-6 py-3 rounded-[6px]"
                     ><svg
