@@ -95,7 +95,7 @@ export default {
 </script>
 <style lang="css" scoped>
 .login {
-  background-image: url(../../assets/images/login-banner.png);
+  background-image: url(../../assets/images/hostel.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
