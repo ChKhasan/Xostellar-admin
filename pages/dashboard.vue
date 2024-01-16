@@ -382,6 +382,7 @@ export default {
         this.dashboard = data?.data;
         this.activeRegion = this.dashboard?.hotels[0]?.data[0]?.region?.id;
         this.activeTab = this.dashboard?.hotels[0]?.title?.id;
+        
         [0, 1, 2].forEach((elem) => {
           const allRegions = this.dashboard?.hotels[elem]?.data?.reduce(
             (sum, item) => {
