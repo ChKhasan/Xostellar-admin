@@ -55,7 +55,11 @@
         "
       >
         <span slot="certificate" slot-scope="text">
-          <a v-if="text" :href="text.link" class="flex justify-end"
+          <a
+            v-if="text"
+            :href="text.link"
+            @click="preventOne"
+            class="flex justify-end"
             ><svg
               data-v-3ff0ae0c=""
               xmlns="http://www.w3.org/2000/svg"
@@ -122,6 +126,7 @@ export default {
   },
   data() {
     return {
+      isLinkClicked: false,
       loading: false,
       hotels: [],
       search: "",
@@ -192,11 +197,20 @@ export default {
     onSearch(e) {
       this.changeSearch(e, "/", "__GET_HOTELS");
     },
-    clickRow(obj,e) {
-      console.log(obj,e);
-      this.$router.push(`/applications/${obj?.id}`);
+    clickRow(obj) {
+      if (!this.isLinkClicked) {
+        this.$router.push(`/applications/${obj?.id}`);
+      } else {
+        this.isLinkClicked = false;
+      }
     },
     moment,
+    preventOne() {
+      // Set the flag when the link is clicked
+      this.isLinkClicked = true;
+      // Additional logic for the link click event, if needed
+      console.log('Link clicked');
+    },
     async __GET_HOTELS() {
       try {
         this.loading = true;
