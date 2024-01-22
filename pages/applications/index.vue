@@ -54,6 +54,33 @@
           }
         "
       >
+        <span slot="certificate" slot-scope="text">
+          <a v-if="text" :href="text.link" class="flex justify-end"
+            ><svg
+              data-v-3ff0ae0c=""
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 16 16"
+              fill="none"
+            >
+              <path
+                data-v-3ff0ae0c=""
+                d="M6 8L8 10M8 10L10 8M8 10L8 2"
+                stroke="#fff"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                data-v-3ff0ae0c=""
+                d="M5 6V6C3.34315 6 2 7.34315 2 9L2 11C2 12.6569 3.34315 14 5 14L11 14C12.6569 14 14 12.6569 14 11L14 9C14 7.34315 12.6569 6 11 6V6"
+                stroke="#fff"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path></svg
+          ></a>
+          <span v-else>-----</span>
+        </span>
         <span slot="status" slot-scope="text">
           <span
             :class="{
@@ -145,6 +172,15 @@ export default {
           scopedSlots: { customRender: "status" },
           className: "column-status",
         },
+        {
+          title: "Sertifikat",
+          dataIndex: "certificate",
+          key: "certificate",
+          slots: { title: "customTitle" },
+          scopedSlots: { customRender: "certificate" },
+          className: "column-certificate",
+          align: "end",
+        },
       ],
     };
   },
@@ -156,7 +192,8 @@ export default {
     onSearch(e) {
       this.changeSearch(e, "/", "__GET_HOTELS");
     },
-    clickRow(obj) {
+    clickRow(obj,e) {
+      console.log(obj,e);
       this.$router.push(`/applications/${obj?.id}`);
     },
     moment,
@@ -215,6 +252,16 @@ export default {
 };
 </script>
 <style lang="css" scoped>
+:deep(.ant-table-row:nth-child(2n + 1) .column-certificate svg path) {
+  stroke: var(--blue-bold) !important;
+  color: var(--blue-bold);
+}
+:deep(.ant-table-row:nth-child(2n) .column-certificate) {
+  color: #fff !important;
+}
+:deep(.ant-table-row:nth-child(2n) .column-text span svg path) {
+  stroke: #fff;
+}
 /* table  */
 :deep(.ant-table-row:nth-child(2n) td) {
   background-color: var(--blue-bold);
