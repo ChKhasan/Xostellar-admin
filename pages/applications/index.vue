@@ -206,10 +206,7 @@ export default {
     },
     moment,
     preventOne() {
-      // Set the flag when the link is clicked
       this.isLinkClicked = true;
-      // Additional logic for the link click event, if needed
-      console.log('Link clicked');
     },
     async __GET_HOTELS() {
       try {
