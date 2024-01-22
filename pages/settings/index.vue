@@ -377,6 +377,14 @@ export default {
           className: "column-text",
         },
         {
+          title: "Viloyat",
+          dataIndex: "region",
+          slots: { title: "customTitle" },
+          scopedSlots: { customRender: "name" },
+          className: "column-text",
+          customRender: (text) => (text?.name ? text?.name?.uz : "----"),
+        },
+        {
           title: "Profil holati",
           dataIndex: "is_active",
           key: "is_active",
