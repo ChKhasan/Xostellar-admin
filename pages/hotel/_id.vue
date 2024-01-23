@@ -32,6 +32,7 @@
         Orqaga
       </button>
       <button
+        v-if="$store.state.profileInfo.role == 'region_subadmin'"
         @click="$router.push(`/hotel/edit/${info?.id}`)"
         class="uppercase flex gap-[10px] px-6 h-[50px] border border-solid border-blue-bold bg-blue-bold rounded-[8px] justify-center items-center text-white font-[verdana-400] text-base"
       >
@@ -69,9 +70,7 @@
     </div>
     <div class="body mt-10 flex flex-col gap-10">
       <div class="title w-full flex justify-center bg-blue-grey py-[10px] rounded-[10px]">
-        <h1 class="font-[verdana-700] text-[24px] text-white">
-          Xostellar ma’lumotlari
-        </h1>
+        <h1 class="font-[verdana-700] text-[24px] text-white">Xostellar ma’lumotlari</h1>
       </div>
       <div class="grid grid-cols-3 gap-6">
         <div
@@ -91,9 +90,7 @@
         <div
           class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
         >
-          <p class="text-white font-[verdana-400] text-base">
-            Xostellar manzili
-          </p>
+          <p class="text-white font-[verdana-400] text-base">Xostellar manzili</p>
           <h5 class="text-[24px] text-white font-bold">
             {{ info?.address_from_application }}
           </h5>
@@ -128,8 +125,8 @@
           <p class="text-white font-[verdana-400] text-base">STIR raqami</p>
           <h5 class="text-[24px] text-white font-bold">{{ info?.tin }}</h5>
         </div>
-        <div class="justify-between flex flex-col relative">
-          <button @click="visible = true" class="absolute right-0 bottom-4">
+        <div class="justify-between flex flex-col relative" >
+          <button @click="visible = true" class="absolute right-0 bottom-4" v-if="$store.state.profileInfo.role == 'region_subadmin'">
             <svg
               width="24"
               height="24"
@@ -199,7 +196,7 @@
         >
           <p class="text-white font-[verdana-400] text-base">Xostellar egasi</p>
           <h5 class="text-[24px] text-white font-bold">
-            {{ info?.director_full_name }} 
+            {{ info?.director_full_name }}
           </h5>
         </div>
       </div>

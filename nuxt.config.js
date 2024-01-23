@@ -20,6 +20,7 @@ export default {
     { src: "~plugins/quill-editor.js", ssr: false },
     { src: "~/plugins/ymapPlugin.js", mode: "client" },
     { src: "~plugins/apex-chart.js", ssr: false },
+    { src: "~plugins/vue-excel-export.js", ssr: false },
   ],
   ssr: false,
   axios: {
@@ -31,7 +32,7 @@ export default {
   },
   components: true,
   layout: {
-    error: 'error',
+    error: "error",
   },
   generate: {
     fallback: true,

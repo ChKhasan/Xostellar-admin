@@ -153,16 +153,202 @@
         </div> -->
       <div class="flex gap-[10px] flex-col mt-4">
         <div class="table-container px-6 py-6 rounded-[24px] bg-white">
-          <h1 class="text-[#000] text-[24px] font-tt font-semibold flex gap-4 mb-6">
-            Arizalar soni <span class="text-[#0808FF]">{{ AplicationstotalCount }}</span>
-          </h1>
+          <div class="flex justify-between">
+            <h1 class="text-[#000] text-[24px] font-tt font-semibold flex gap-4 mb-6">
+              Arizalar soni
+              <span class="text-[#0808FF]">{{ AplicationstotalCount }}</span>
+            </h1>
+            <download-excel
+              class="btn btn-default"
+              :data="dashboard.applications"
+              :fields="json_fields"
+              worksheet="My Worksheet"
+              name="statistic_xotels.xls"
+            >
+              <button
+                class="flex gap-4 px-4 py-2 items-center justify-center bg-[#E0F2E2] font-tt text-[#009A10] text-[14px] font-semibold text-center"
+              >
+                Excel fileni yuklab olish
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  version="1.1"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 256 256"
+                  xml:space="preserve"
+                >
+                  <defs></defs>
+                  <g
+                    style="
+                      stroke: none;
+                      stroke-width: 0;
+                      stroke-dasharray: none;
+                      stroke-linecap: butt;
+                      stroke-linejoin: miter;
+                      stroke-miterlimit: 10;
+                      fill: none;
+                      fill-rule: nonzero;
+                      opacity: 1;
+                    "
+                    transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"
+                  >
+                    <path
+                      d="M 78.42 18.345 v 68.502 c 0 1.741 -1.412 3.153 -3.153 3.153 H 14.733 c -1.741 0 -3.153 -1.412 -3.153 -3.153 V 3.153 C 11.58 1.412 12.991 0 14.733 0 h 45.343 L 78.42 18.345 z"
+                      style="
+                        stroke: none;
+                        stroke-width: 1;
+                        stroke-dasharray: none;
+                        stroke-linecap: butt;
+                        stroke-linejoin: miter;
+                        stroke-miterlimit: 10;
+                        fill: rgb(0, 130, 83);
+                        fill-rule: nonzero;
+                        opacity: 1;
+                      "
+                      transform=" matrix(1 0 0 1 0 0) "
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M 78.42 18.345 H 62.948 c -1.587 0 -2.873 -1.286 -2.873 -2.873 V 0 L 78.42 18.345 z"
+                      style="
+                        stroke: none;
+                        stroke-width: 1;
+                        stroke-dasharray: none;
+                        stroke-linecap: butt;
+                        stroke-linejoin: miter;
+                        stroke-miterlimit: 10;
+                        fill: rgb(0, 170, 109);
+                        fill-rule: nonzero;
+                        opacity: 1;
+                      "
+                      transform=" matrix(1 0 0 1 0 0) "
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M 81.953 63.087 H 8.047 c -1.176 0 -2.129 -0.953 -2.129 -2.129 V 39.235 c 0 -1.176 0.953 -2.129 2.129 -2.129 h 73.905 c 1.176 0 2.129 0.953 2.129 2.129 v 21.722 C 84.081 62.133 83.128 63.087 81.953 63.087 z"
+                      style="
+                        stroke: none;
+                        stroke-width: 1;
+                        stroke-dasharray: none;
+                        stroke-linecap: butt;
+                        stroke-linejoin: miter;
+                        stroke-miterlimit: 10;
+                        fill: rgb(0, 170, 109);
+                        fill-rule: nonzero;
+                        opacity: 1;
+                      "
+                      transform=" matrix(1 0 0 1 0 0) "
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M 53.313 58.602 h -5.286 c -0.553 0 -1 -0.447 -1 -1 s 0.447 -1 1 -1 h 5.286 c 0.575 0 1.043 -0.468 1.043 -1.043 v -2.841 c 0 -0.575 -0.468 -1.043 -1.043 -1.043 H 50.07 c -1.678 0 -3.043 -1.365 -3.043 -3.043 v -2.841 c 0 -1.678 1.365 -3.043 3.043 -3.043 h 3.599 c 0.553 0 1 0.448 1 1 s -0.447 1 -1 1 H 50.07 c -0.575 0 -1.043 0.468 -1.043 1.043 v 2.841 c 0 0.575 0.468 1.043 1.043 1.043 h 3.243 c 1.678 0 3.043 1.365 3.043 3.043 v 2.841 C 56.356 57.236 54.991 58.602 53.313 58.602 z"
+                      style="
+                        stroke: none;
+                        stroke-width: 1;
+                        stroke-dasharray: none;
+                        stroke-linecap: butt;
+                        stroke-linejoin: miter;
+                        stroke-miterlimit: 10;
+                        fill: rgb(255, 255, 255);
+                        fill-rule: nonzero;
+                        opacity: 1;
+                      "
+                      transform=" matrix(1 0 0 1 0 0) "
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M 42.628 58.654 h -4.982 c -1.861 0 -3.375 -1.514 -3.375 -3.375 V 43.748 c 0 -0.552 0.448 -1 1 -1 s 1 0.448 1 1 v 11.532 c 0 0.758 0.617 1.375 1.375 1.375 h 4.982 c 0.552 0 1 0.447 1 1 S 43.181 58.654 42.628 58.654 z"
+                      style="
+                        stroke: none;
+                        stroke-width: 1;
+                        stroke-dasharray: none;
+                        stroke-linecap: butt;
+                        stroke-linejoin: miter;
+                        stroke-miterlimit: 10;
+                        fill: rgb(255, 255, 255);
+                        fill-rule: nonzero;
+                        opacity: 1;
+                      "
+                      transform=" matrix(1 0 0 1 0 0) "
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M 21.723 58.602 c -0.158 0 -0.317 -0.037 -0.467 -0.116 c -0.488 -0.258 -0.674 -0.863 -0.416 -1.352 l 7.329 -13.854 c 0.258 -0.488 0.863 -0.675 1.352 -0.416 c 0.488 0.258 0.674 0.863 0.416 1.352 l -7.329 13.854 C 22.429 58.408 22.082 58.602 21.723 58.602 z"
+                      style="
+                        stroke: none;
+                        stroke-width: 1;
+                        stroke-dasharray: none;
+                        stroke-linecap: butt;
+                        stroke-linejoin: miter;
+                        stroke-miterlimit: 10;
+                        fill: rgb(255, 255, 255);
+                        fill-rule: nonzero;
+                        opacity: 1;
+                      "
+                      transform=" matrix(1 0 0 1 0 0) "
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M 29.054 58.602 c -0.359 0 -0.706 -0.193 -0.885 -0.532 L 20.84 44.215 c -0.258 -0.488 -0.072 -1.093 0.416 -1.352 c 0.49 -0.258 1.094 -0.071 1.352 0.416 l 7.329 13.854 c 0.258 0.488 0.072 1.094 -0.416 1.352 C 29.372 58.564 29.212 58.602 29.054 58.602 z"
+                      style="
+                        stroke: none;
+                        stroke-width: 1;
+                        stroke-dasharray: none;
+                        stroke-linecap: butt;
+                        stroke-linejoin: miter;
+                        stroke-miterlimit: 10;
+                        fill: rgb(255, 255, 255);
+                        fill-rule: nonzero;
+                        opacity: 1;
+                      "
+                      transform=" matrix(1 0 0 1 0 0) "
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M 60.945 58.602 c -0.157 0 -0.317 -0.037 -0.467 -0.116 c -0.488 -0.258 -0.675 -0.863 -0.416 -1.352 l 7.329 -13.854 c 0.259 -0.487 0.862 -0.676 1.352 -0.416 c 0.488 0.258 0.675 0.863 0.416 1.352 L 61.83 58.069 C 61.65 58.408 61.304 58.602 60.945 58.602 z"
+                      style="
+                        stroke: none;
+                        stroke-width: 1;
+                        stroke-dasharray: none;
+                        stroke-linecap: butt;
+                        stroke-linejoin: miter;
+                        stroke-miterlimit: 10;
+                        fill: rgb(255, 255, 255);
+                        fill-rule: nonzero;
+                        opacity: 1;
+                      "
+                      transform=" matrix(1 0 0 1 0 0) "
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M 68.276 58.602 c -0.358 0 -0.705 -0.193 -0.885 -0.532 l -7.329 -13.854 c -0.259 -0.488 -0.072 -1.093 0.416 -1.352 c 0.49 -0.26 1.093 -0.071 1.352 0.416 l 7.329 13.854 c 0.259 0.488 0.072 1.094 -0.416 1.352 C 68.594 58.564 68.434 58.602 68.276 58.602 z"
+                      style="
+                        stroke: none;
+                        stroke-width: 1;
+                        stroke-dasharray: none;
+                        stroke-linecap: butt;
+                        stroke-linejoin: miter;
+                        stroke-miterlimit: 10;
+                        fill: rgb(255, 255, 255);
+                        fill-rule: nonzero;
+                        opacity: 1;
+                      "
+                      transform=" matrix(1 0 0 1 0 0) "
+                      stroke-linecap="round"
+                    />
+                  </g>
+                </svg>
+              </button>
+            </download-excel>
+          </div>
           <div class="flex flex-col gap-2">
             <div class="table-head">
               <ul class="grid grid-cols-7 gap-2">
                 <li
                   class="px-4 py-2 rounded-t-[8px] border flex items-center border-solid border-[#E9ECEF] bg-[#F8F9FA] font-tt text-[#020105] text-[14px] font-medium"
                 >
-                  Shahar nomi
+                  Viloyat nomi
                 </li>
                 <li
                   class="px-4 py-2 rounded-t-[8px] border flex items-center justify-center border-solid border-[#E9ECEF] bg-[#F0F1FD] font-tt text-[#3C4BDC] text-[14px] font-semibold text-center"
@@ -260,6 +446,26 @@ import Map from "./map.vue";
 export default {
   data() {
     return {
+      json_fields: {
+        "Viloyat nomi": {
+          field: "region.name.ru",
+        },
+        "Ko‘rib chiqish muddati yaqinlashdi": "warning",
+        "Ko‘rib chiqish muddati kechikdi": "danger",
+        Yangi: "new",
+        "Ko‘rib chiqilmoqda": "in_process",
+        "Muvaffaqiyatli yakunlandi": "accepted",
+        "Rad etildi": "rejected",
+      },
+
+      json_meta: [
+        [
+          {
+            key: "charset",
+            value: "utf-8",
+          },
+        ],
+      ],
       activeTab: 1,
       activeRegion: null,
       tabList: [
@@ -379,44 +585,66 @@ export default {
     async __GET_DASHBOARD() {
       try {
         const data = await this.$store.dispatch("fetchDashboard/getDashboard");
-        this.dashboard = data?.data;
-        this.activeRegion = this.dashboard?.hotels[0]?.data[0]?.region?.id;
-        this.activeTab = this.dashboard?.hotels[0]?.title?.id;
-        
-        [0, 1, 2].forEach((elem) => {
-          const allRegions = this.dashboard?.hotels[elem]?.data?.reduce(
-            (sum, item) => {
-              return {
-                inactive_count: sum.inactive_count + item.inactive_count,
-                count: sum.count + item.count,
-                places: sum.places + item.places,
+        this.dashboard = { ...data?.data };
+        if (
+          this.$store.state.profileInfo?.region_id &&
+          this.dashboard.hotels[0].data.length > 0
+        ) {
+          this.dashboard.hotels.forEach((elem, index) => {
+            this.dashboard.hotels[index].data = this.dashboard?.hotels[
+              index
+            ]?.data.filter(
+              (item) => item.region.id == this.$store.state.profileInfo?.region_id
+            );
+          });
+        }
+        if (this.$store.state.profileInfo?.region_id) {
+          this.dashboard.applications = this.dashboard.applications.filter(
+            (item) => item.region.id == this.$store.state.profileInfo?.region_id
+          );
+        } else {
+          [0, 1, 2].forEach((elem) => {
+            const allRegions = this.dashboard?.hotels[elem]?.data?.reduce(
+              (sum, item) => {
+                return {
+                  inactive_count: sum.inactive_count + item.inactive_count,
+                  count: sum.count + item.count,
+                  places: sum.places + item.places,
+                  region: {
+                    id: 8888,
+                    name: {
+                      uz: "Республика",
+                    },
+                  },
+                };
+              },
+              {
+                inactive_count: 0,
+                count: 0,
+                places: 0,
                 region: {
-                  id: 8888,
                   name: {
-                    uz: "Республика",
+                    uz: "",
                   },
                 },
-              };
-            },
-            {
-              inactive_count: 0,
-              count: 0,
-              places: 0,
-              region: {
-                name: {
-                  uz: "",
-                },
-              },
-            }
-          );
-          this.dashboard?.hotels[elem]?.data.unshift(allRegions);
-        });
+              }
+            );
+            this.dashboard?.hotels[elem]?.data.unshift(allRegions);
+          });
+        }
+        this.activeRegion = this.dashboard?.hotels[0]?.data[0]?.region?.id;
+        this.activeTab = this.dashboard?.hotels[0]?.title?.id;
       } catch (e) {}
     },
     async __GET_REGIONS() {
       try {
         const data = await this.$store.dispatch("fetchRegions/getRegions");
         this.regions = data.data.data;
+        if (this.$store.state.profileInfo?.region_id) {
+          this.regions = this.regions.filter(
+            (item) => item.id == this.$store.state.profileInfo?.region_id
+          );
+        }
         this.activeRegion = this.regions[0]?.id;
       } catch (e) {}
     },
