@@ -168,7 +168,7 @@
               <button
                 class="flex gap-4 px-4 py-2 items-center justify-center bg-[#E0F2E2] font-tt text-[#009A10] text-[14px] font-semibold text-center"
               >
-                Excel fileni yuklab olish
+                Excel faylni yuklab olish
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink"
