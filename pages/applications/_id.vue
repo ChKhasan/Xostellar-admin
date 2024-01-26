@@ -139,7 +139,11 @@
             <div class="grid grid-cols-2 gap-6">
               <a
                 v-if="files?.state_certificate"
-                :href="`https://hotels.ndc.uz/storage/${files?.state_certificate}`"
+                :href="`https://api.hotels.ndc.uz/${
+                  files?.state_certificate.includes('storage')
+                    ? files?.state_certificate
+                    : `storage/${files?.state_certificate}`
+                }`"
               >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
@@ -171,7 +175,11 @@
                     </svg>
                   </p>
                   <span
-                    :href="`https://hotels.ndc.uz/storage/${files?.cadastre}`"
+                    :href="`https://api.hotels.ndc.uz/${
+                      files?.cadastre.includes('storage')
+                        ? files?.cadastre
+                        : `storage/${files?.cadastre}`
+                    }`"
                     class="text-base text-[#0D152C] flex justify-center gap-10 items-center mt-[50px]"
                   >
                     Davlat komissiyasining foydalanishga qabul qilish to‘g‘risida
@@ -267,7 +275,11 @@
               </a>
               <a
                 v-if="files?.cadastre"
-                :href="`https://hotels.ndc.uz/storage/${files?.cadastre}`"
+                :href="`https://api.hotels.ndc.uz/${
+                  files?.cadastre.includes('storage')
+                    ? files?.cadastre
+                    : `storage/${files?.cadastre}`
+                }`"
               >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
@@ -394,7 +406,11 @@
             <div class="grid grid-cols-2 gap-6">
               <a
                 v-if="files?.sanitation"
-                :href="`https://hotels.ndc.uz/storage/${files?.sanitation}`"
+                :href="`https://api.hotels.ndc.uz/${
+                  files?.sanitation.includes('storage')
+                    ? files?.sanitation
+                    : `storage/${files?.sanitation}`
+                }`"
               >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
@@ -520,7 +536,11 @@
               </a>
               <a
                 v-if="files?.fire_safety"
-                :href="`https://hotels.ndc.uz/storage/${files?.fire_safety}`"
+                :href="`https://api.hotels.ndc.uz/${
+                  files?.fire_safety.includes('storage')
+                    ? files?.fire_safety
+                    : `storage/${files?.fire_safety}`
+                }`"
               >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
@@ -647,7 +667,11 @@
             <div class="grid grid-cols-1 gap-6">
               <a
                 v-if="files?.certificate"
-                :href="`https://hotels.ndc.uz/storage/${files?.certificate}`"
+                :href="`https://api.hotels.ndc.uz/${
+                  files?.certificate.includes('storage')
+                    ? files?.certificate
+                    : `storage/${files?.certificate}`
+                }`"
               >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
