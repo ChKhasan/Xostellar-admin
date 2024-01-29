@@ -925,7 +925,8 @@
           v-if="
             files?.status != 'accepted' &&
             files?.status != 'rejected' &&
-            $store.state.profileInfo?.role == 'region_subadmin'
+            ($store.state.profileInfo?.role == 'region_subadmin' ||
+              $store.state.profileInfo?.role == 'region_admin')
           "
         >
           <button
