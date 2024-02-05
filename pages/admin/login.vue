@@ -83,10 +83,17 @@ export default {
         this.$router.push("/");
       } catch (e) {
         this.loading = false;
-        this.$notification["error"]({
-          message: "Error",
-          description: e.response.statusText,
-        });
+        if (e?.response?.status == 404) {
+          this.$notification["error"]({
+            message: "Error",
+            description: "Foydalanuvchi topilmadi.",
+          });
+        } else {
+          this.$notification["error"]({
+            message: "Error",
+            description: e.response.statusText,
+          });
+        }
       }
     },
   },
