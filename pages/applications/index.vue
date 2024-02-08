@@ -170,6 +170,15 @@ export default {
           className: "column-text cursor-pointer",
         },
         {
+          title: "Hudud",
+          dataIndex: "hotel",
+          key: "hotel",
+          slots: { title: "customTitle" },
+          scopedSlots: { customRender: "status" },
+          className: "column-text",
+          customRender: (text) => `${text?.region?.name?.uz}`,
+        },
+        {
           title: "Ariza holati",
           dataIndex: "status",
           key: "status",
