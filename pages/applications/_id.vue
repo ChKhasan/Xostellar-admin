@@ -79,7 +79,7 @@
             class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
           >
             <p class="text-white font-[verdana-400] text-base">
-              Xostellar, oʼtovli va chodirli oromgohlar manzili
+              Tashkilot yuridik manzili
             </p>
             <h5 class="text-[24px] text-white font-bold">
               {{ info?.address_from_application }}

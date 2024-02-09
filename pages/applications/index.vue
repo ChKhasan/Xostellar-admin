@@ -55,11 +55,7 @@
         "
       >
         <span slot="certificate" slot-scope="text">
-          <a
-            v-if="text"
-            :href="text.link"
-            @click="preventOne"
-            class="flex justify-end"
+          <a v-if="text" :href="text.link" @click="preventOne" class="flex justify-end"
             ><svg
               data-v-3ff0ae0c=""
               xmlns="http://www.w3.org/2000/svg"
@@ -151,6 +147,14 @@ export default {
           key: "hotel",
           slots: { title: "customTitle" },
           scopedSlots: { customRender: "name" },
+          className: "column-text cursor-pointer",
+        },
+        {
+          title: "STIR raqami",
+          dataIndex: "hotel",
+          key: "tin",
+          slots: { title: "customTitle" },
+          customRender: (text) => <span>{text?.tin ? text?.tin : "----"}</span>,
           className: "column-text cursor-pointer",
         },
         {
