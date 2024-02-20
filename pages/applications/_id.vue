@@ -33,14 +33,34 @@
           Orqaga
         </button>
       </div>
-      <div class="mt-10" v-if="files?.reject_reasons?.length > 0">
+      <!-- user_canceled -->
+      <div class="mt-10" v-if="files.user_canceled">
+        <div
+          class="title w-full flex justify-center bg-blue-grey py-[10px] rounded-[10px]"
+        >
+          <h1 class="font-[verdana-700] text-[24px] text-[red]">
+            Mijoz tomondan rad etilgan
+          </h1>
+        </div>
+      </div>
+      <div
+        class="mt-10"
+        v-if="
+          (files?.reject_reasons?.length > 0 || files?.reject_text) &&
+          !files.user_canceled
+        "
+      >
         <div
           class="title w-full flex justify-center bg-blue-grey py-[10px] rounded-[10px]"
         >
           <h1 class="font-[verdana-700] text-[24px] text-white">Rad etish sabablari</h1>
         </div>
         <ul class="mt-8">
+          <li v-if="files?.reject_text" class="text-[red] font-[verdana-400] text-base">
+            {{ files?.reject_text }}
+          </li>
           <li
+            v-if="files?.reject_reasons?.length > 0"
             class="text-[red] font-[verdana-400] text-base"
             v-for="(reason, index) in files?.reject_reasons"
           >
@@ -958,13 +978,14 @@
               Rad etishingizga aminmisiz?
             </h4>
           </div>
-          <div>
+          <div class="flex flex-col gap-3">
             <a-form-model-item
               prop="reject_reasons"
               class="form-item w-full mb-0"
               label="Rad etish sabablari"
             >
               <a-select
+                :disabled="reject_comment"
                 mode="multiple"
                 v-model="form.reject_reasons"
                 placeholder="Xizmatni tanlang..."
@@ -978,6 +999,22 @@
                   {{ reason?.name?.uz }}</a-select-option
                 >
               </a-select>
+            </a-form-model-item>
+            <span class="mt-[-12px]">
+              <a-checkbox v-model="reject_comment">Boshqa</a-checkbox></span
+            >
+            <a-form-model-item
+              v-if="reject_comment"
+              prop="reject_text"
+              class="form-item w-full mb-0"
+              label="Rad etish sababi"
+            >
+              <a-input
+                v-model="form.reject_text"
+                type="textarea"
+                rows="5"
+                placeholder="Sababni kiriting..."
+              />
             </a-form-model-item>
           </div>
           <div class="buttons grid grid-cols-2 gap-[30px] mt-4">
@@ -1060,6 +1097,7 @@
 export default {
   data() {
     return {
+      reject_comment: false,
       visible: false,
       visibleAccept: false,
       coords: [41.311081, 69.240562],
@@ -1076,6 +1114,9 @@ export default {
         ],
         reject_reasons: [
           { required: true, message: "This field is required", trigger: "change" },
+        ],
+        reject_text: [
+          { required: true, message: "This field is required", trigger: "blur" },
         ],
         address: {
           ru: [{ required: true, message: "This field is required", trigger: "change" }],
@@ -1095,6 +1136,7 @@ export default {
         lon: "",
         status: "",
         region_id: undefined,
+        reject_text: "",
         address: {
           ru: "",
           en: "",
@@ -1158,8 +1200,22 @@ export default {
         await delete this.rules["rooms"];
         await delete this.rules["places"];
       }
+      if (this.reject_comment) {
+        await delete this.rules["reject_reasons"];
+        this.rules.reject_text = await [
+          { required: true, message: "This field is required", trigger: "blur" },
+        ];
+        this.form.reject_reasons = [];
+      } else {
+        await delete this.rules["reject_text"];
+        this.rules.reject_reasons = await [
+          { required: true, message: "This field is required", trigger: "blur" },
+        ];
+        this.form.reject_text = "";
+      }
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
+          // console.log(this.form);
           this.__EDIT_APPLICATIONS(this.form, type);
         } else {
         }
@@ -1246,6 +1302,9 @@ export default {
 };
 </script>
 <style lang="css" scoped>
+:deep(.ant-checkbox-inner) {
+  background-color: transparent;
+}
 /* form  */
 .form-item :deep(label::before) {
   display: none;
@@ -1272,7 +1331,7 @@ export default {
   border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   background-color: transparent;
-  height: 50px;
+  min-height: 50px;
 }
 .form-item :deep(.ant-select-selection--single),
 .form-item :deep(.ant-select-selection) {

@@ -84,13 +84,17 @@
         <span slot="status" slot-scope="text">
           <span
             :class="{
-              'status-new': text == 'new',
-              'status-inactive': text == 'rejected',
-              'status-progress': text == 'in_process',
-              'status-success': text == 'accepted',
+              'status-new': text?.status == 'new',
+              'status-inactive': text?.status == 'rejected',
+              'status-progress': text?.status == 'in_process',
+              'status-success': text?.status == 'accepted',
             }"
           >
-            {{ statusTypes[text] }}
+            {{
+              text?.user_canceled
+                ? "MIJOZ TOMONDAN RAD ETILGAN"
+                : statusTypes[text.status]
+            }}
           </span>
         </span>
         <span slot="name" slot-scope="text">
@@ -184,8 +188,6 @@ export default {
         },
         {
           title: "Ariza holati",
-          dataIndex: "status",
-          key: "status",
           slots: { title: "customTitle" },
           scopedSlots: { customRender: "status" },
           className: "column-status",
