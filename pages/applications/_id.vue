@@ -83,7 +83,7 @@
             <p class="text-white font-[verdana-400] text-base">
               Xostellar, oʼtovli va chodirli oromgohlar nomi
             </p>
-            <h5 class="text-[24px] text-white font-bold">{{ info?.name }}</h5>
+            <h5 class="text-[24px] text-white font-bold">{{ info?.name || emptyText }}</h5>
           </div>
           <div
             class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
@@ -92,7 +92,7 @@
               Xostellar, oʼtovli va chodirli oromgohlar joylashgan hudud
             </p>
             <h5 class="text-[24px] text-white font-bold">
-              {{ info?.region?.name?.uz || "----" }}
+              {{ info?.region?.name?.uz  || emptyText }}
             </h5>
           </div>
           <div
@@ -102,42 +102,38 @@
               Tashkilot yuridik manzili
             </p>
             <h5 class="text-[24px] text-white font-bold">
-              {{ info?.address_from_application }}
+              {{ info?.address_from_application || emptyText }}
             </h5>
           </div>
-        </div>
-        <div class="grid grid-cols-3 gap-6">
+
           <div
             class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
           >
             <p class="text-white font-[verdana-400] text-base">Tashkilot yuridik nomi</p>
-            <h5 class="text-[24px] text-white font-bold">{{ info?.legal_name }}</h5>
+            <h5 class="text-[24px] text-white font-bold">{{ info?.legal_name || emptyText }}</h5>
           </div>
           <div
             class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
           >
             <p class="text-white font-[verdana-400] text-base">STIR raqami</p>
-            <h5 class="text-[24px] text-white font-bold">{{ info?.tin }}</h5>
+            <h5 class="text-[24px] text-white font-bold">{{ info?.tin || emptyText }}</h5>
           </div>
+
           <div
             class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
           >
             <p class="text-white font-[verdana-400] text-base">
-              Xostellar, oʼtovli va chodirli oromgohlar rahbari
+              Xostellar, oʼtovli va chodirli oromgohlar telefon raqamlari ( qo'shimcha )
             </p>
-            <h5 class="text-[24px] text-white font-bold">
-              {{ info?.director_full_name }}
-            </h5>
+            <h5 class="text-[24px] text-white font-bold">{{ info?.phone_number2 || emptyText }}</h5>
           </div>
-        </div>
-        <div class="grid grid-cols-3 gap-6">
           <div
             class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
           >
             <p class="text-white font-[verdana-400] text-base">
               Xostellar, oʼtovli va chodirli oromgohlar telefon raqamlari
             </p>
-            <h5 class="text-[24px] text-white font-bold">{{ info?.phone_number }}</h5>
+            <h5 class="text-[24px] text-white font-bold">{{ info?.phone_number || emptyText }}</h5>
           </div>
           <div
             class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
@@ -152,7 +148,85 @@
             <h5 class="text-[24px] text-white font-bold">{{ info?.website }}</h5>
           </div>
         </div>
-
+        <div
+          class="title w-full flex justify-center bg-blue-grey py-[10px] rounded-[10px]"
+        >
+          <h1 class="font-[verdana-700] text-[24px] text-white">
+            Xostellar, oʼtovli va chodirli oromgoh rahbari ma'lumotlari
+          </h1>
+        </div>
+        <div class="grid grid-cols-3 gap-6">
+          <div
+            class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
+          >
+            <p class="text-white font-[verdana-400] text-base">
+              Xostellar, oʼtovli va chodirli oromgoh rahbari
+            </p>
+            <h5 class="text-[24px] text-white font-bold">
+              {{ info?.user?.one_id_user?.full_name || emptyText }}
+            </h5>
+          </div>
+          <div
+            class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
+          >
+            <p class="text-white font-[verdana-400] text-base">
+              Pasport seriyasi va raqami
+            </p>
+            <h5 class="text-[24px] text-white font-bold">
+              {{ info?.user?.one_id_user?.pport_no || emptyText }}
+            </h5>
+          </div>
+          <div
+            class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
+          >
+            <p class="text-white font-[verdana-400] text-base">Pasport kim tomondan berilgan</p>
+            <h5 class="text-[24px] text-white font-bold">
+              {{ info?.user?.one_id_user?.pport_issue_place || emptyText }}
+            </h5>
+          </div>
+          <div
+            class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
+          >
+            <p class="text-white font-[verdana-400] text-base">JShShIR</p>
+            <h5 class="text-[24px] text-white font-bold">
+              {{ info?.user?.one_id_user?.pin || emptyText }}
+            </h5>
+          </div>
+          <div
+            class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
+          >
+            <p class="text-white font-[verdana-400] text-base">Elektron pochta manzili</p>
+            <h5 class="text-[24px] text-white font-bold">
+              {{ info?.user?.one_id_user?.email || emptyText }}
+            </h5>
+          </div>
+          <div
+            class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
+          >
+            <p class="text-white font-[verdana-400] text-base">Manzili</p>
+            <h5 class="text-[24px] text-white font-bold">
+              {{ info?.user?.one_id_user?.per_adr || emptyText }}
+            </h5>
+          </div>
+          <div
+            class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
+          >
+            <p class="text-white font-[verdana-400] text-base">Telefon raqami</p>
+            <h5 class="text-[24px] text-white font-bold">
+              {{ info?.user?.one_id_user?.mob_phone_no || emptyText }}
+            </h5>
+          </div>
+          <div
+            class="px-[30px] rounded-[6px] py-[30px] min-h-[150px] justify-between flex flex-col bg-blue-bold"
+          >
+            <p class="text-white font-[verdana-400] text-base">
+              Xostellar, oʼtovli va chodirli oromgoh rahbari STIR raqami
+            </p>
+            <h5 class="text-[24px] text-white font-bold">
+              {{ info?.user?.one_id_user?.tin || emptyText }}
+            </h5>
+          </div>
+        </div>
         <div class="">
           <!-- <a-form-model :model="form" ref="ruleForm" :rules="rules"> -->
           <div class="flex flex-col gap-10">
@@ -194,7 +268,7 @@
                       />
                     </svg>
                   </p>
-                  <span
+                  <a
                     :href="`https://api.hotels.ndc.uz/${
                       files?.cadastre.includes('storage')
                         ? files?.cadastre
@@ -233,7 +307,7 @@
                         stroke-linejoin="round"
                       />
                     </svg>
-                  </span>
+                  </a>
                   <div class="buttons flex gap-6 justify-center mt-[60px]">
                     <button>
                       <svg
@@ -1097,12 +1171,12 @@
 export default {
   data() {
     return {
+      emptyText: "----",
       reject_comment: false,
       visible: false,
       visibleAccept: false,
       coords: [41.311081, 69.240562],
       regions: [],
-      form: {},
       info: {},
       files: {},
       rules: {
@@ -1235,12 +1309,12 @@ export default {
         this.regions = data.data.data;
       } catch (e) {}
     },
-    async __GET_SERVICES() {
-      try {
-        const data = await this.$store.dispatch("fetchApplications/getServices");
-        this.services = data.data;
-      } catch (e) {}
-    },
+    // async __GET_SERVICES() {
+    //   try {
+    //     const data = await this.$store.dispatch("fetchApplications/getServices");
+    //     this.services = data.data;
+    //   } catch (e) {}
+    // },
     async __GET_SERVICES() {
       try {
         const data = await this.$store.dispatch("fetchReasons/getReasons");
@@ -1346,7 +1420,7 @@ export default {
   line-height: 150%; /* 24px */
 }
 .form-item
-  :deep(.ant-select-selection--multiple .ant-select-selection__rendered > ul > li) {
+:deep(.ant-select-selection--multiple .ant-select-selection__rendered  ul  li) {
   height: 40px;
   display: flex;
   align-items: center;
