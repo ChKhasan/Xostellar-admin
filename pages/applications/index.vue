@@ -106,6 +106,9 @@
         <span slot="begin_date" slot-scope="text">
           {{ text ? moment(text).format("DD.MM.YYYY - HH-MM") : "----" }}
         </span>
+        <span slot="deadline" slot-scope="text">
+         {{ text ? `${text} kun` : "Yakunlangan" }}
+        </span>
       </a-table>
     </div>
     <div class="mt-10">
@@ -185,6 +188,14 @@ export default {
           scopedSlots: { customRender: "status" },
           className: "column-text",
           customRender: (text) => `${text?.region?.name?.uz}`,
+        },
+        {
+          title: "Muhlat",
+          dataIndex: "deadline",
+          key: "deadline",
+          slots: { title: "customTitle" },
+          scopedSlots: { customRender: "deadline" },
+          className: "column-text",
         },
         {
           title: "Ariza holati",
