@@ -38,6 +38,7 @@
     </div>
     <div class="body">
       <a-table
+        :scroll="{ x: 1920 }"
         :columns="columnOrders"
         :data-source="hotels"
         class="custom-table"
@@ -147,6 +148,19 @@ export default {
           key: "key",
           customRender: (text, row, index) => <span>#{text}</span>,
           className: "column-text cursor-pointer",
+          fixed: 'left',
+          width: '100px'
+        },
+        {
+          title: "Ariza raqami",
+          dataIndex: "task_id",
+          key: "task_id",
+          slots: { title: "customTitle" },
+          scopedSlots: { customRender: "task_id" },
+          className: "column-text cursor-pointer last-fixed",
+          fixed: 'left',
+          width: '150px'
+
         },
         {
           title: "Xostel nomi",
@@ -211,6 +225,8 @@ export default {
           scopedSlots: { customRender: "certificate" },
           className: "column-certificate",
           align: "end",
+          fixed: 'right',
+          width: '100px'
         },
       ],
     };
@@ -289,6 +305,10 @@ export default {
 };
 </script>
 <style lang="css" scoped>
+:deep(.last-fixed) {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
 :deep(.ant-table-row:nth-child(2n + 1) .column-certificate svg path) {
   stroke: var(--blue-bold) !important;
   color: var(--blue-bold);
@@ -300,8 +320,21 @@ export default {
   stroke: #fff;
 }
 /* table  */
-:deep(.ant-table-row:nth-child(2n) td) {
+:deep(.ant-table-row:nth-child(2n) td),:deep(.ant-table-row-hover:nth-child(2n)) {
   background-color: var(--blue-bold);
+}
+:deep(.ant-table-fixed-left table),
+:deep(.ant-table-fixed-right table) {
+  background: var(--bg-grey);
+}
+:deep(.ant-table-tbody > tr.ant-table-row-hover:nth-child(2n):not(.ant-table-expanded-row):not(.ant-table-row-selected) > td) {
+  background-color: var(--blue-bold);
+}
+:deep(.ant-table-row-cell-last) {
+  border-radius: 0;
+}
+:deep(.ant-table-tbody > tr.ant-table-row-hover:nth-child(2n + 1):not(.ant-table-expanded-row):not(.ant-table-row-selected) > td) {
+  background: var(--bg-grey);
 }
 :deep(.ant-table-row:nth-child(2n) td:first-child),
 :deep(.ant-table-thead > tr > th:first-child) {
