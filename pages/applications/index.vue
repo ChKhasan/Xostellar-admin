@@ -57,14 +57,14 @@
       >
         <span slot="certificate" slot-scope="text">
           <a v-if="text" :href="text.link" @click="preventOne" class="flex justify-end"
-            ><svg
-              data-v-3ff0ae0c=""
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 16 16"
-              fill="none"
-            >
+          ><svg
+            data-v-3ff0ae0c=""
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 16 16"
+            fill="none"
+          >
               <path
                 data-v-3ff0ae0c=""
                 d="M6 8L8 10M8 10L10 8M8 10L8 2"
@@ -86,9 +86,9 @@
           <span
             :class="{
               'status-new': text?.status == 'new',
-              'status-inactive': text?.status == 'rejected',
-              'status-progress': text?.status == 'in_process',
-              'status-success': text?.status == 'accepted',
+              'status-inactive': text?.status === 'rejected',
+              'status-progress': text?.status === 'in_process',
+              'status-success': text?.status === 'accepted',
             }"
           >
             {{
@@ -108,12 +108,12 @@
           {{ text ? moment(text).format("DD.MM.YYYY - HH-MM") : "----" }}
         </span>
         <span slot="deadline" slot-scope="text">
-         {{ text ? `${text} kun` : "Yakunlangan" }}
+         {{ text?.deadline && text?.user_canceled ? `${text?.deadline} kun` : "Yakunlangan" }}
         </span>
       </a-table>
     </div>
     <div class="mt-10">
-      <VPagination @getData="__GET_HOTELS" :totalPage="totalPage" />
+      <VPagination @getData="__GET_HOTELS" :totalPage="totalPage"/>
     </div>
   </div>
 </template>
@@ -121,6 +121,7 @@
 <script>
 import VPagination from "@/components/VPagination.vue";
 import moment from "moment";
+
 export default {
   name: "IndexPage",
   head() {
@@ -155,8 +156,8 @@ export default {
           title: "Ariza raqami",
           dataIndex: "task_id",
           key: "task_id",
-          slots: { title: "customTitle" },
-          scopedSlots: { customRender: "task_id" },
+          slots: {title: "customTitle"},
+          scopedSlots: {customRender: "task_id"},
           className: "column-text cursor-pointer last-fixed",
           fixed: 'left',
           width: '150px'
@@ -166,15 +167,15 @@ export default {
           title: "Xostel nomi",
           dataIndex: "hotel",
           key: "hotel",
-          slots: { title: "customTitle" },
-          scopedSlots: { customRender: "name" },
+          slots: {title: "customTitle"},
+          scopedSlots: {customRender: "name"},
           className: "column-text cursor-pointer",
         },
         {
           title: "STIR raqami",
           dataIndex: "hotel",
           key: "tin",
-          slots: { title: "customTitle" },
+          slots: {title: "customTitle"},
           customRender: (text) => <span>{text?.tin ? text?.tin : "----"}</span>,
           className: "column-text cursor-pointer",
         },
@@ -182,47 +183,46 @@ export default {
           title: "Ariza kelib tushgan sana",
           dataIndex: "created_at",
           key: "created_at",
-          slots: { title: "customTitle" },
-          scopedSlots: { customRender: "begin_date" },
+          slots: {title: "customTitle"},
+          scopedSlots: {customRender: "begin_date"},
           className: "column-text cursor-pointer",
         },
         {
           title: "Ariza yakunlangan sana",
           dataIndex: "closed_at",
           key: "closed_at",
-          slots: { title: "customTitle" },
-          scopedSlots: { customRender: "end_date" },
+          slots: {title: "customTitle"},
+          scopedSlots: {customRender: "end_date"},
           className: "column-text cursor-pointer",
         },
         {
           title: "Hudud",
           dataIndex: "hotel",
           key: "hotel",
-          slots: { title: "customTitle" },
-          scopedSlots: { customRender: "status" },
+          slots: {title: "customTitle"},
+          scopedSlots: {customRender: "status"},
           className: "column-text",
           customRender: (text) => `${text?.region?.name?.uz}`,
         },
         {
           title: "Muhlat",
-          dataIndex: "deadline",
           key: "deadline",
-          slots: { title: "customTitle" },
-          scopedSlots: { customRender: "deadline" },
+          slots: {title: "customTitle"},
+          scopedSlots: {customRender: "deadline"},
           className: "column-text",
         },
         {
           title: "Ariza holati",
-          slots: { title: "customTitle" },
-          scopedSlots: { customRender: "status" },
+          slots: {title: "customTitle"},
+          scopedSlots: {customRender: "status"},
           className: "column-status",
         },
         {
           title: "Sertifikat",
           dataIndex: "certificate",
           key: "certificate",
-          slots: { title: "customTitle" },
-          scopedSlots: { customRender: "certificate" },
+          slots: {title: "customTitle"},
+          scopedSlots: {customRender: "certificate"},
           className: "column-certificate",
           align: "end",
           fixed: 'right',
@@ -268,7 +268,8 @@ export default {
         });
         this.totalPage = data.data.total;
         this.loading = false;
-      } catch (e) {}
+      } catch (e) {
+      }
     },
     indexPage(current_page, per_page) {
       return (current_page * 1 - 1) * per_page + 1;
@@ -278,7 +279,7 @@ export default {
         if (this.$route.query?.search != val.target.value) {
           await this.$router.replace({
             path: url,
-            query: { ...this.$route.query, search: val.target.value, page: 1 },
+            query: {...this.$route.query, search: val.target.value, page: 1},
           });
         }
         if (val.target.value == this.$route.query.search) this[func]();
@@ -288,12 +289,12 @@ export default {
     },
     async clearQuery(url, func) {
       this.search = "";
-      const queryFirst = { ...this.$route.query, page: 1 };
-      const { search, ...query } = queryFirst;
+      const queryFirst = {...this.$route.query, page: 1};
+      const {search, ...query} = queryFirst;
       if (this.$route.query?.search) {
         await this.$router.replace({
           path: url,
-          query: { ...query },
+          query: {...query},
         });
         this[func]();
       }
@@ -309,41 +310,52 @@ export default {
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
 }
+
 :deep(.ant-table-row:nth-child(2n + 1) .column-certificate svg path) {
   stroke: var(--blue-bold) !important;
   color: var(--blue-bold);
 }
+
 :deep(.ant-table-row:nth-child(2n) .column-certificate) {
   color: #fff !important;
 }
+
 :deep(.ant-table-row:nth-child(2n) .column-text span svg path) {
   stroke: #fff;
 }
+
 /* table  */
-:deep(.ant-table-row:nth-child(2n) td),:deep(.ant-table-row-hover:nth-child(2n)) {
+:deep(.ant-table-row:nth-child(2n) td), :deep(.ant-table-row-hover:nth-child(2n)) {
   background-color: var(--blue-bold);
 }
+
 :deep(.ant-table-fixed-left table),
 :deep(.ant-table-fixed-right table) {
   background: var(--bg-grey);
 }
+
 :deep(.ant-table-tbody > tr.ant-table-row-hover:nth-child(2n):not(.ant-table-expanded-row):not(.ant-table-row-selected) > td) {
   background-color: var(--blue-bold);
 }
+
 :deep(.ant-table-row-cell-last) {
   border-radius: 0;
 }
+
 :deep(.ant-table-tbody > tr.ant-table-row-hover:nth-child(2n + 1):not(.ant-table-expanded-row):not(.ant-table-row-selected) > td) {
   background: var(--bg-grey);
 }
+
 :deep(.ant-table-row:nth-child(2n) td:first-child),
 :deep(.ant-table-thead > tr > th:first-child) {
   border-radius: 5px 0 0 5px;
 }
+
 :deep(.ant-table-row:nth-child(2n) td:last-child),
 :deep(.ant-table-thead > tr > th:last-child) {
   border-radius: 0 5px 5px 0;
 }
+
 .custom-table :deep(.column-text),
 .custom-table :deep(.column-status) {
   font-family: var(--v-regular);
@@ -352,6 +364,7 @@ export default {
   font-style: normal;
   line-height: 150%; /* 24px */
 }
+
 :deep(.ant-table-column-title) {
   font-family: var(--v-regular);
   color: #fff;
@@ -359,12 +372,15 @@ export default {
   font-style: normal;
   line-height: 150%; /* 24px */
 }
+
 :deep(.ant-table-row:nth-child(2n) .column-text) {
   color: #fff;
 }
+
 :deep(.ant-table-row:nth-child(2n) .column-text span svg path) {
   stroke: #fff;
 }
+
 :deep(.ant-table-thead > tr > th) {
   background-color: var(--blue-grey);
 }
@@ -372,26 +388,33 @@ export default {
 :deep(.ant-table-thead .column-text) {
   color: #fff;
 }
+
 :deep(.ant-table-thead > tr > th, .ant-table-tbody > tr > td) {
   padding: 10px 20px;
 }
+
 :deep(.column-status .status-new) {
   color: var(--blue);
 }
+
 :deep(.column-status .status-inactive) {
   color: var(--red-dark);
 }
+
 :deep(.column-status .status-progress) {
   color: var(--orange);
 }
+
 :deep(.column-status .status-success) {
   color: var(--green);
 }
+
 :deep(.ant-table-tbody
     > tr:nth-child(2n):hover:not(.ant-table-expanded-row):not(.ant-table-row-selected)
     > td) {
   background: #002144;
 }
+
 /* table  */
 .search-block {
   border-color: rgba(0, 0, 0, 0.3);
