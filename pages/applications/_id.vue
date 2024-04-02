@@ -1345,7 +1345,7 @@ export default {
         this.form.lon = data?.data?.hotel?.lon;
         this.form.status = data?.data?.hotel?.status;
         this.form.name = data?.data?.hotel?.name;
-        this.form.region_id = data?.data?.hotel?.region?.id;
+        this.form.region_id = data?.data?.hotel?.region_id;
         this.files = data?.data;
         this.info = data?.data?.hotel;
         this.title = { ...data?.data?.hotel?.name };
