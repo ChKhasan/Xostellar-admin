@@ -932,7 +932,7 @@
               >
                 <a-select
                   v-model="form.region_id"
-                  placeholder="Toshkent shahri"
+                  placeholder="Hududni tanlang"
                   class="w-full"
                 >
                   <a-select-option
