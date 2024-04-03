@@ -108,7 +108,7 @@
           {{ text ? moment(text).format("DD.MM.YYYY - HH-MM") : "----" }}
         </span>
         <span slot="deadline" slot-scope="text">
-         {{ text?.deadline && text?.user_canceled ? `${text?.deadline} kun` : "Yakunlangan" }}
+         {{ text?.deadline &&  !text?.user_canceled ? `${text?.deadline} kun` : "Yakunlangan" }}
         </span>
       </a-table>
     </div>
