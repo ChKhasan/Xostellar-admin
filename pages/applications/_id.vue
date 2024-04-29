@@ -33,6 +33,12 @@
           Orqaga
         </button>
       </div>
+      <div class="mt-10" v-if="($store.state.profileInfo?.role === 'region_subadmin' ||
+                       $store.state.profileInfo?.role === 'region_admin')">
+        <ApplicationsVerificationSteps :loading="loading" ref="appSteps" :application="files" :reasons="reasons"
+                                       :parent-form="form" @submit="submit"
+                                       @openModal="openModal" />
+      </div>
       <!-- user_canceled -->
       <div class="mt-10" v-if="files.user_canceled">
         <div
@@ -1004,38 +1010,29 @@
           >
             <ymap-marker :coords="coords" marker-id="123" hint-content="some hint" />
           </yandex-map>
-          <!-- <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.152394473258!2d69.24323909041384!3d41.32729942574873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b711d027053%3A0x2ec050777a5a6873!2z0JPQsNC90LPQsA!5e0!3m2!1sru!2s!4v1700216322446!5m2!1sru!2s"
-          class="w-full"
-          height="700"
-          style="border: 0"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe> -->
         </div>
-        <div
-          class="buttons flex justify-center gap-6"
-          v-if="
-            files?.status != 'accepted' &&
-            files?.status != 'rejected' &&
-            ($store.state.profileInfo?.role == 'region_subadmin' ||
-              $store.state.profileInfo?.role == 'region_admin')
-          "
-        >
-          <button
-            @click="visible = true"
-            class="py-[13px] w-[366px] rounded-[8px] text-white bg-red-dark2 font-[verdana-400] text-base uppercase flex justify-center"
-          >
-            Rad etish
-          </button>
-          <button
-            @click="visibleAccept = true"
-            class="py-[13px] w-[366px] rounded-[8px] text-white bg-blue-bold font-[verdana-400] text-base uppercase flex justify-center"
-          >
-            Tasdiqlash va reyestrga kiritish
-          </button>
-        </div>
+<!--        <div-->
+<!--          class="buttons flex justify-center gap-6"-->
+<!--          v-if="-->
+<!--            files?.status != 'accepted' &&-->
+<!--            files?.status != 'rejected' &&-->
+<!--            ($store.state.profileInfo?.role == 'region_subadmin' ||-->
+<!--              $store.state.profileInfo?.role == 'region_admin')-->
+<!--          "-->
+<!--        >-->
+<!--          <button-->
+<!--            @click="visible = true"-->
+<!--            class="py-[13px] w-[366px] rounded-[8px] text-white bg-red-dark2 font-[verdana-400] text-base uppercase flex justify-center"-->
+<!--          >-->
+<!--            Rad etish-->
+<!--          </button>-->
+<!--          <button-->
+<!--            @click="visibleAccept = true"-->
+<!--            class="py-[13px] w-[366px] rounded-[8px] text-white bg-blue-bold font-[verdana-400] text-base uppercase flex justify-center"-->
+<!--          >-->
+<!--            Tasdiqlash va reyestrga kiritish-->
+<!--          </button>-->
+<!--        </div>-->
       </div>
       <a-modal
         class="close-modal"
@@ -1052,45 +1049,47 @@
               Rad etishingizga aminmisiz?
             </h4>
           </div>
-          <div class="flex flex-col gap-3">
-            <a-form-model-item
-              prop="reject_reasons"
-              class="form-item w-full mb-0"
-              label="Rad etish sabablari"
-            >
-              <a-select
-                :disabled="reject_comment"
-                mode="multiple"
-                v-model="form.reject_reasons"
-                placeholder="Xizmatni tanlang..."
-                class="w-full"
+          <a-form-model ref="ruleFormReject" :model="form" :rules="rulesReject">
+            <div class="flex flex-col gap-3">
+<!--              <a-form-model-item-->
+<!--                :prop="!reject_comment ? 'reject_reasons':''"-->
+<!--                class="form-item w-full mb-0"-->
+<!--                label="Rad etish sabablari"-->
+<!--              >-->
+<!--                <a-select-->
+<!--                  :disabled="reject_comment"-->
+<!--                  mode="multiple"-->
+<!--                  v-model="form.reject_reasons"-->
+<!--                  placeholder="Xizmatni tanlang..."-->
+<!--                  class="w-full"-->
+<!--                >-->
+<!--                  <a-select-option-->
+<!--                    :value="reason?.id"-->
+<!--                    v-for="reason in reasons"-->
+<!--                    :key="reason?.id"-->
+<!--                  >-->
+<!--                    {{ reason?.name?.uz }}</a-select-option-->
+<!--                  >-->
+<!--                </a-select>-->
+<!--              </a-form-model-item>-->
+<!--              <span class="mt-[-12px]">-->
+<!--              <a-checkbox v-model="reject_comment">Boshqa</a-checkbox></span-->
+<!--              >-->
+              <a-form-model-item
+                prop="reject_text"
+                class="form-item w-full mb-0"
+                label="Rad etish sababi"
               >
-                <a-select-option
-                  :value="reason?.id"
-                  v-for="reason in reasons"
-                  :key="reason?.id"
-                >
-                  {{ reason?.name?.uz }}</a-select-option
-                >
-              </a-select>
-            </a-form-model-item>
-            <span class="mt-[-12px]">
-              <a-checkbox v-model="reject_comment">Boshqa</a-checkbox></span
-            >
-            <a-form-model-item
-              v-if="reject_comment"
-              prop="reject_text"
-              class="form-item w-full mb-0"
-              label="Rad etish sababi"
-            >
-              <a-input
-                v-model="form.reject_text"
-                type="textarea"
-                rows="5"
-                placeholder="Sababni kiriting..."
-              />
-            </a-form-model-item>
-          </div>
+                <a-input
+                  v-model="form.reject_text"
+                  type="textarea"
+                  rows="5"
+                  placeholder="Sababni kiriting..."
+                />
+              </a-form-model-item>
+            </div>
+          </a-form-model>
+
           <div class="buttons grid grid-cols-2 gap-[30px] mt-4">
             <button
               @click="handleOk"
@@ -1099,7 +1098,7 @@
               Bekor qilish
             </button>
             <button
-              @click="submit('cancel')"
+              @click="submit('ruleFormReject')"
               class="py-[13px] rounded-[8px] text-white bg-blue-bold font-[verdana-400] text-base uppercase flex justify-center"
             >
               Ha, aminman
@@ -1156,7 +1155,7 @@
               Bekor qilish
             </button>
             <button
-              @click="submit('accept')"
+              @click="submit('accept','ruleForm')"
               class="py-[13px] rounded-[8px] text-white bg-blue-bold font-[verdana-400] text-base uppercase flex justify-center"
             >
               Tasdiqlash
@@ -1171,6 +1170,7 @@
 export default {
   data() {
     return {
+      loading: false,
       emptyText: "----",
       reject_comment: false,
       visible: false,
@@ -1179,18 +1179,20 @@ export default {
       regions: [],
       info: {},
       files: {},
+      rulesReject: {
+        reject_reasons: [
+          {required: true, message: "This field is required", trigger: "change"},
+        ],
+        reject_text: [
+          {required: true, message: "This field is required", trigger: "change"},
+        ],
+      },
       rules: {
         lat: [{ required: true, message: "This field is required", trigger: "change" }],
         lon: [{ required: true, message: "This field is required", trigger: "change" }],
         name: [{ required: true, message: "This field is required", trigger: "change" }],
         status: [
           { required: true, message: "This field is required", trigger: "change" },
-        ],
-        reject_reasons: [
-          { required: true, message: "This field is required", trigger: "change" },
-        ],
-        reject_text: [
-          { required: true, message: "This field is required", trigger: "blur" },
         ],
         address: {
           ru: [{ required: true, message: "This field is required", trigger: "change" }],
@@ -1235,65 +1237,27 @@ export default {
     handleOkAccept() {
       this.visibleAccept = false;
     },
-    async submit(type) {
-      if (type == "accept") {
-        await delete this.rules["reject_reasons"];
-        this.rules = {
-          lat: [{ required: true, message: "This field is required", trigger: "change" }],
-          lon: [{ required: true, message: "This field is required", trigger: "change" }],
-          name: [
-            { required: true, message: "This field is required", trigger: "change" },
-          ],
-          status: [
-            { required: true, message: "This field is required", trigger: "change" },
-          ],
-          address: {
-            ru: [
-              { required: true, message: "This field is required", trigger: "change" },
-            ],
-            uz: [
-              { required: true, message: "This field is required", trigger: "change" },
-            ],
-            en: [
-              { required: true, message: "This field is required", trigger: "change" },
-            ],
-          },
-        };
-        this.rules.rooms = await [
-          { required: true, message: "This field is required", trigger: "change" },
-        ];
-        this.rules.places = await [
-          { required: true, message: "This field is required", trigger: "change" },
-        ];
-      } else {
-        this.rules = {};
-        if (!this.rules["reject_reasons"])
-          this.rules.reject_reasons = await [
-            { required: true, message: "This field is required", trigger: "change" },
-          ];
-        await delete this.rules["rooms"];
-        await delete this.rules["places"];
+    openModal(status, form) {
+      this.form.status = status;
+      if (form) {
+        this.form = {...this.form, ...form}
       }
-      if (this.reject_comment) {
-        await delete this.rules["reject_reasons"];
-        this.rules.reject_text = await [
-          { required: true, message: "This field is required", trigger: "blur" },
-        ];
-        this.form.reject_reasons = [];
-      } else {
-        await delete this.rules["reject_text"];
-        this.rules.reject_reasons = await [
-          { required: true, message: "This field is required", trigger: "blur" },
-        ];
-        this.form.reject_text = "";
-      }
-      this.$refs.ruleForm.validate((valid) => {
-        if (valid) {
-          // console.log(this.form);
-          this.__EDIT_APPLICATIONS(this.form, type);
-        } else {
-        }
+      this.visible = true
+    },
+    async submit(ruleForm, form) {
+      let data = {...this.form}
+      if (form)
+        data = {...data, ...form};
+      this.$refs[ruleForm].validate((valid) => {
+        valid ? this.__EDIT_APPLICATIONS(data) : this.$notification["error"]({description: "Iltimos, ma'lumotlarini to'liq kiriting!"});
       });
+      // let data = {...this.form}
+      // if (form)
+      //   data = {...data, ...form};
+      // this.reject_comment ? this.form.reject_reasons = [] : this.form.reject_text = "";
+      // this.$refs[ruleForm].validate((valid) => {
+      //   // valid ? this.__EDIT_APPLICATIONS(data, type) : false
+      // });
     },
     onClick(e) {
       this.coords = e.get("coords");
@@ -1353,6 +1317,7 @@ export default {
     },
     async __EDIT_APPLICATIONS(form, type) {
       try {
+        this.loading = true;
         const data = await this.$store.dispatch("fetchApplications/editApp", {
           id: this.$route.params.id,
           data: form,
@@ -1364,12 +1329,15 @@ export default {
           message: "Success",
           description: "Ariza muvaffaqiyatli o'zgartirildi",
         });
-        this.$router.go(-1);
+        this.visible = false;
+        this.__GET_APPLICATIONS(this.$route.params.id);
       } catch (e) {
         this.$notification["error"]({
           message: "Error",
           description: e.response.statusText,
         });
+      } finally {
+        this.loading = false
       }
     },
   },

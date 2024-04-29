@@ -8,6 +8,15 @@ export const actions = {
     });
     return res;
   },
+  async getAllHotels({}, payload) {
+    const res = await this.$axios.$get(`/hotels-all`, {
+      params: payload,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
+      },
+    });
+    return res;
+  },
   async getHotelsById({}, id) {
     const res = await this.$axios.$get(`/hotels/${id}`, {
       headers: {
