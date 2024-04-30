@@ -105,7 +105,7 @@ export default {
     },
     submit(status, ruleForm, form) {
       let isRuleForm
-      [110, 90].includes(this.activeStatus) ? isRuleForm = ruleForm : isRuleForm = null
+      [110, 90].includes(status) ? isRuleForm = 'ruleForm' : isRuleForm = false
       !form ? this.form.status = status : this[form].status = status
       ruleForm ?
         this.$refs[ruleForm].validate((valid) => {

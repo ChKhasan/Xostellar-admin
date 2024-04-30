@@ -1256,6 +1256,7 @@ export default {
     },
     async submit(ruleForm, form) {
       let data = {...this.form}
+      console.log(ruleForm)
       if (form)
         data = {...data, ...form};
       ruleForm ? this.$refs[ruleForm].validate((valid) => {
