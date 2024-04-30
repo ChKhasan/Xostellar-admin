@@ -67,7 +67,7 @@
             </a>
            </span>
         <span slot="application" class="flex justify-center" slot-scope="text">
-          <a :href="`https://api.hotels.ndc.uz/generate-application/${text?.task_id}`" target="_blank" @click="preventOne">
+          <a :href="`${baseUrl}/generate-application/${text?.task_id}`" target="_blank" @click="preventOne">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="28" height="28" rx="14" fill="white"/>
               <path d="M7.33337 9.6665C7.33337 7.45737 9.12423 5.6665 11.3334 5.6665H16.5099C17.5707 5.6665 18.5881 6.08793 19.3383 6.83808L21.1618 8.6616C21.9119 9.41174 22.3334 10.4292 22.3334 11.49V18.3332C22.3334 20.5423 20.5425 22.3332 18.3334 22.3332H11.3334C9.12424 22.3332 7.33337 20.5423 7.33337 18.3332V9.6665Z" stroke="#28303F" stroke-width="1.5" stroke-linejoin="round"/>
@@ -270,6 +270,11 @@ export default {
           // },
       ],
     };
+  },
+  computed: {
+    baseUrl() {
+      return process.env && process.env.baseUrl
+    },
   },
   mounted() {
     this.__GET_HOTELS();

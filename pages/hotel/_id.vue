@@ -32,7 +32,7 @@
         Orqaga
       </button>
      <div class="flex gap-4">
-       <a href="#"
+       <a :href="info?.application?.certificate?.link" target="_blank"  v-if="info?.deregistration_date === null"
          class="uppercase hover:text-white flex gap-[10px] px-6 h-[50px] bg-[#00CD69] rounded-[8px] justify-center items-center text-white font-[verdana-400] text-base"
        >
          Kochirma
@@ -45,7 +45,7 @@
 
 
        </a>
-       <a href="#"
+       <a :href="`${baseUrl}/generate-application/${info?.application?.task_id}`" target="_blank" v-if="info?.deregistration_date === null"
          class="uppercase flex hover:text-white gap-[10px] px-6 h-[50px] bg-[#F2994A] rounded-[8px] justify-center items-center text-white font-[verdana-400] text-base"
        >
          Ariza
@@ -337,6 +337,11 @@ export default {
       form: {},
       visible: false,
     };
+  },
+  computed:{
+    baseUrl() {
+      return process.env.baseUrl
+    },
   },
   mounted() {
     this.__GET_HOTEL(this.$route.params.id);

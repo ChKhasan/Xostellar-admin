@@ -38,7 +38,9 @@ export default {
     fallback: true,
   },
   buildModules: ["@nuxtjs/tailwindcss"],
-
+  env: {
+    baseUrl: 'https://hotels.ndc.uz'
+  },
   modules: ["@nuxtjs/axios"],
 
   build: {},

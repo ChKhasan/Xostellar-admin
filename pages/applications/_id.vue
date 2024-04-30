@@ -239,11 +239,12 @@
             <div class="grid grid-cols-2 gap-6">
               <a
                 v-if="files?.state_certificate"
-                :href="`https://api.hotels.ndc.uz/${
+                :href="`${baseUrl}/${
                   files?.state_certificate.includes('storage')
                     ? files?.state_certificate
                     : `storage/${files?.state_certificate}`
                 }`"
+                target="_blank"
               >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
@@ -275,11 +276,12 @@
                     </svg>
                   </p>
                   <a
-                    :href="`https://api.hotels.ndc.uz/${
+                    :href="`${baseUrl}/${
                       files?.cadastre.includes('storage')
                         ? files?.cadastre
                         : `storage/${files?.cadastre}`
                     }`"
+                    target="_blank"
                     class="text-base text-[#0D152C] flex justify-center gap-10 items-center mt-[50px]"
                   >
                     Davlat komissiyasining foydalanishga qabul qilish to‘g‘risida
@@ -375,11 +377,12 @@
               </a>
               <a
                 v-if="files?.cadastre"
-                :href="`https://api.hotels.ndc.uz/${
+                :href="`${baseUrl}/${
                   files?.cadastre.includes('storage')
                     ? files?.cadastre
                     : `storage/${files?.cadastre}`
                 }`"
+                target="_blank"
               >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
@@ -506,11 +509,12 @@
             <div class="grid grid-cols-2 gap-6">
               <a
                 v-if="files?.sanitation"
-                :href="`https://api.hotels.ndc.uz/${
+                :href="`${baseUrl}/${
                   files?.sanitation.includes('storage')
                     ? files?.sanitation
                     : `storage/${files?.sanitation}`
                 }`"
+                target="_blank"
               >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
@@ -636,11 +640,12 @@
               </a>
               <a
                 v-if="files?.fire_safety"
-                :href="`https://api.hotels.ndc.uz/${
+                :href="`${baseUrl}/${
                   files?.fire_safety.includes('storage')
                     ? files?.fire_safety
                     : `storage/${files?.fire_safety}`
                 }`"
+                target="_blank"
               >
                 <div
                   class="border-[2px] border-solid rounded-[6px] border-[#5A5A5A] px-6 py-6"
@@ -767,7 +772,7 @@
 <!--            <div class="grid grid-cols-1 gap-6">-->
 <!--              <a-->
 <!--                v-if="files?.certificate"-->
-<!--                :href="`https://api.hotels.ndc.uz/${-->
+<!--                :href="`${baseUrl}/${-->
 <!--                  files?.certificate.includes('storage')-->
 <!--                    ? files?.certificate-->
 <!--                    : `storage/${files?.certificate}`-->
@@ -1229,6 +1234,11 @@ export default {
     this.__GET_APPLICATIONS(this.$route.params.id);
     this.__GET_REGIONS();
     this.__GET_SERVICES();
+  },
+  computed: {
+    baseUrl() {
+      return process.env.baseUrl
+    },
   },
   methods: {
     handleOk() {
