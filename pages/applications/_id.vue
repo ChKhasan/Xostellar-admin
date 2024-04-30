@@ -1258,16 +1258,9 @@ export default {
       let data = {...this.form}
       if (form)
         data = {...data, ...form};
-      this.$refs[ruleForm].validate((valid) => {
+      ruleForm ? this.$refs[ruleForm].validate((valid) => {
         valid ? this.__EDIT_APPLICATIONS(data) : this.$notification["error"]({description: "Iltimos, ma'lumotlarini to'liq kiriting!"});
-      });
-      // let data = {...this.form}
-      // if (form)
-      //   data = {...data, ...form};
-      // this.reject_comment ? this.form.reject_reasons = [] : this.form.reject_text = "";
-      // this.$refs[ruleForm].validate((valid) => {
-      //   // valid ? this.__EDIT_APPLICATIONS(data, type) : false
-      // });
+      }):this.__EDIT_APPLICATIONS(data);
     },
     onClick(e) {
       this.coords = e.get("coords");

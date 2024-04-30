@@ -35,6 +35,11 @@ export default {
         rooms: null,
         places: null,
       },
+      fileNames: {
+        form: '',
+        formLast: '',
+        formComplete: ''
+      },
       formComplete: {
         status: 50,
         act_number: "",
@@ -99,20 +104,23 @@ export default {
       this.visible = false
     },
     submit(status, ruleForm, form) {
+      let isRuleForm
+      [110, 90].includes(this.activeStatus) ? isRuleForm = ruleForm : isRuleForm = null
       !form ? this.form.status = status : this[form].status = status
       ruleForm ?
         this.$refs[ruleForm].validate((valid) => {
-          if(valid) {
-            status === 100 ? this.$emit('openModal', 100,this[form]):this.$emit('submit', 'ruleForm', this[form])
+          if (valid) {
+            status === 100 ? this.$emit('openModal', 100, this[form]) : this.$emit('submit', isRuleForm, this[form])
           } else {
             return false
           }
         }) :
-        this.$emit('submit', 'ruleForm', form ? this[form] : this.form)
+        this.$emit('submit', isRuleForm, form ? this[form] : this.form)
     },
     handleChange(info, form) {
       if (info.file.status === 'done') {
         this[form].act = info.file.response
+        this.fileNames[form] = info.file.name
       } else if (info.file.status === 'error') {
         console.log(`${info.file.name} file upload failed.`);
       }
@@ -159,15 +167,17 @@ export default {
       :content="[
         'Boshqarma hodimlari tomonidan bartaraf etilgangan kamchiliklar ko‘rib chiqilishi kutilmoqda',
         ]"
-      title="Mehmon uyi Reyestrga kiritildi"
+      :title="statusHistory(100) ? 'Ariza rad etildi':'Mehmon uyi Reyestrga kiritildi'"
       :subtitle="`Ariza kelib tushgan sana: ${
         statusHistory(110) || statusHistory(90) ?
         historyDateFormatter(statusHistory(110)?.created_at || statusHistory(90)?.created_at):
         appUpdateDate}`"
     >
       <div class="flex flex-col gap-3 my-4">
+        <p class="verdana-400 text-base">Sababi: Quyidagi dalolatnoma asosida mehmon uyi kamchiliklari bartaraf
+          etilmadi</p>
         <a-form-model class="w-full" :model="formComplete" ref="ruleFormLast">
-          <div class="flex gap-4 ">
+          <div class="flex gap-4 mt-4">
             <a-form-model-item
               prop="name"
               class="form-item w-full mb-0 max-w-[150px] disabled"
@@ -211,7 +221,7 @@ export default {
           </div>
         </a-form-model>
       </div>
-      <div class="flex gap-4">
+      <div class="flex gap-4" v-if="!statusHistory(100)">
         <a :href="application?.certificate?.link" target="_blank" class="v-btn success-btn">Kochirmani yuklab olish</a>
       </div>
     </ApplicationsStepCard>
@@ -282,13 +292,14 @@ export default {
                 <a-upload
                   name="file"
                   :multiple="true"
-                  action="${baseUrl}/api/files"
+                  :action="`${baseUrl}/api/files`"
                   :headers="headers"
                   @change="$event => handleChange($event,'formLast')"
                 >
                   <button
-                    class="h-[50px] verdana-400 bg-[#EBEBEB] text-[#020105] text-base flex items-center px-5 border-[#0000004D] rounded-[10px] border border-solid min-w-[334px] justify-between">
-                    Dalolatnomani biriktirish
+                    class="h-[50px] verdana-400 bg-[#EBEBEB] whitespace-nowrap truncate text-[#020105] text-base flex items-center px-5 border-[#0000004D] rounded-[10px] border border-solid min-w-[334px]  max-w-[334px] justify-between">
+
+                    <span class="max-w-[90%] truncate">{{ fileNames['formLast']  ? fileNames['formLast']:'Dalolatnomani biriktirish' }}</span>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M7.55999 15.1001C3.95999 14.7901 2.48999 12.9401 2.48999 8.8901L2.48999 8.7601C2.48999 4.2901 4.27999 2.5001 8.74999 2.5001L15.26 2.5001C19.73 2.5001 21.52 4.2901 21.52 8.7601L21.52 8.8901C21.52 12.9101 20.07 14.7601 16.53 15.0901"
@@ -405,13 +416,13 @@ export default {
                 :disabled="!(activeStatus === 30 || activeStatus === 70)"
                 name="file"
                 :multiple="true"
-                action="${baseUrl}/api/files"
+                :action="`${baseUrl}/api/files`"
                 :headers="headers"
                 @change="$event => handleChange($event,'form')"
               >
                 <button
-                  class="h-[50px] verdana-400 bg-[#EBEBEB] text-[#020105] text-base flex items-center px-5 border-[#0000004D] rounded-[10px] border border-solid min-w-[334px] justify-between">
-                  Dalolatnomani biriktirish
+                  class="h-[50px] whitespace-nowrap  verdana-400 bg-[#EBEBEB] text-[#020105] text-base flex items-center px-5 border-[#0000004D] rounded-[10px] border border-solid min-w-[334px] max-w-[334px] justify-between">
+                 <span class="max-w-[90%] truncate"> {{ fileNames['form']  ? fileNames['form']:'Dalolatnomani biriktirish' }}</span>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M7.55999 15.1001C3.95999 14.7901 2.48999 12.9401 2.48999 8.8901L2.48999 8.7601C2.48999 4.2901 4.27999 2.5001 8.74999 2.5001L15.26 2.5001C19.73 2.5001 21.52 4.2901 21.52 8.7601L21.52 8.8901C21.52 12.9101 20.07 14.7601 16.53 15.0901"
@@ -486,14 +497,18 @@ export default {
         'Kelib tushgan arizada kamchiliklar va hatolar mavjud. Arizachi tomonidan arizani  5 kun ichida tog’irlashi kutilmoqda. ',
         `5 kun ichida kamchiliklar tog’irlanmasa Rad etiladi. Qayta ariza jo‘natish yakuniy muddati: ${dateEnd}`
         ]"
-      title="Qayta ariza kutilmoqda"
+      :title="statusHistory(60) ? 'Ariza rad etildi':'Qayta ariza kutilmoqda'"
       :subtitle="`Bosqich sanasi: ${
         statusHistory(20) ?
         historyDateFormatter(statusHistory(20)?.created_at):
         appUpdateDate}`"
     >
+      <p v-if="statusHistory(60)" class="verdana-400 text-base mt-4">
+        Sababi: Ariza kamchiliklari bartaraf etilmadi</p>
       <div class="flex gap-4 mt-4" v-if="activeStatus === 20">
-        <a-button :loading="loading" class="v-btn danger-btn" :class="{isPending: !isDateEnd}" @click="$emit('openModal',60)">Rad etish</a-button>
+        <a-button :loading="loading" class="v-btn danger-btn" :class="{isPending: !isDateEnd}"
+                  @click="$emit('openModal',60)">Rad etish
+        </a-button>
       </div>
     </ApplicationsStepCard>
     <ApplicationsStepCard
@@ -591,6 +606,7 @@ export default {
   background: #EBEBEB;
   border: 0;
 }
+
 .isPending {
   background: grey;
   pointer-events: none;
