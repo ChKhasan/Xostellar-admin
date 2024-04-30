@@ -46,7 +46,7 @@
         <button
           class="uppercase flex whitespace-nowrap gap-[10px] px-6 h-[50px] border border-solid border-blue-bold bg-blue-bold rounded-[8px] justify-center items-center text-white font-[verdana-400] text-base"
         >
-          Mehmon uylari ro'yxati
+          Xostellar ro'yxati
           <svg
             width="25"
             height="24"
