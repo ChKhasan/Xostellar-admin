@@ -1,6 +1,6 @@
 export default {
   head: {
-    title: "Admin panel",
+    title: "Xostellar",
     htmlAttrs: {
       lang: "en",
     },
