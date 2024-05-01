@@ -98,7 +98,7 @@
                   {{ hotelsInActiveCount }}
                 </h6>
                 <p class="font-tt font-medium text-base text-[#5D5D5F] text-center">
-                  To’xtatilgan xostellar
+                  Faoliyati to'xtatilgan mehmon uylari soni
                 </p>
               </div>
             </div>
