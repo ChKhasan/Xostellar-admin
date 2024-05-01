@@ -271,12 +271,12 @@ export default {
       json_fields: {
         "№": "index",
         "Hudud nomi": {
-          field: "region.name.ru",
+          field: "region.name.uz",
         },
         "Xususiy yoki oilaviy tadbirkorlik subyekti (arizachining nomi)": "director_full_name",
         "Xostel nomi": "name",
         STIR: "tin",
-        "Shahar tuman nomi": "region.name.ru",
+        "Shahar tuman nomi": "region.name.uz",
         "Xostel manzili (Joylashgan joyi)": "address.uz",
         "Individual reester raqami": "register_number",
         "Yagona Reesterga kiritilgan sana": "entry_date",

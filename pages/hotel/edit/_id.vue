@@ -73,7 +73,7 @@
               <a-input v-model="form.lon" placeholder="Kenglik nuqtasini kiriting" />
             </a-form-model-item>
           </div>
-          <div class="buttons flex justify-center gap-6">
+          <!-- <div class="buttons flex justify-center gap-6">
             <button
               @click="$router.go(-1)"
               class="py-[13px] w-[366px] rounded-[8px] text-white bg-red-dark2 font-[verdana-400] text-base uppercase flex justify-center"
@@ -86,7 +86,7 @@
             >
               Saqlash
             </button>
-          </div>
+          </div> -->
         </div>
       </a-form-model>
     </div>

@@ -59,7 +59,7 @@
 
 
        </a>
-       <button
+       <!-- <button
          v-if="$store.state.profileInfo.role == 'region_subadmin'"
          @click="$router.push(`/hotel/edit/${info?.id}`)"
          class="uppercase flex gap-[10px] px-6 h-[50px] border border-solid border-blue-bold bg-blue-bold rounded-[8px] justify-center items-center text-white font-[verdana-400] text-base"
@@ -94,7 +94,7 @@
              stroke-linejoin="round"
            />
          </svg>
-       </button>
+       </button> -->
      </div>
     </div>
     <div class="body mt-10 flex flex-col gap-10">
