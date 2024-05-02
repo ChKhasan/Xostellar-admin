@@ -344,7 +344,7 @@
           </div>
           <div class="flex flex-col gap-2">
             <div class="table-head">
-              <ul class="grid grid-cols-7 gap-2">
+              <ul class="grid grid-cols-9 gap-2">
                 <li
                   class="px-4 py-2 rounded-t-[8px] border flex items-center border-solid border-[#E9ECEF] bg-[#F8F9FA] font-tt text-[#020105] text-[14px] font-medium"
                 >
@@ -380,6 +380,16 @@
                 >
                   Rad etildi
                 </li>
+                <li
+                  class="px-4 py-2 rounded-t-[8px] border flex items-center justify-center border-solid border-[#E9ECEF] bg-[#e5e8ec] font-tt text-[#A4ABB6] text-[14px] font-semibold text-center"
+                >
+                Ariza kamchiliklari
+                </li>
+                <li
+                  class="px-4 py-2 rounded-t-[8px] border flex items-center justify-center border-solid border-[#E9ECEF] bg-[#deebf4] font-tt text-[#2DCCFF] text-[14px] font-semibold text-center"
+                >
+                Mehmon uyi kamchiliklari
+                </li>
               </ul>
             </div>
             <div class="table-body">
@@ -387,7 +397,7 @@
                 v-for="(region, index) in dashboard.applications"
                 :key="region?.region.id"
               >
-                <ul class="grid grid-cols-7 gap-2">
+                <ul class="grid grid-cols-9 gap-2">
                   <li
                     class="h-10 px-4 flex items-center bg-[#FAFAFC] border-[0] border-t border-solid border-[#E9ECEF] text-[12px] text-[#020105] font-medium font-tt"
                   >
@@ -423,6 +433,16 @@
                   >
                     {{ region?.rejected }}
                   </li>
+                  <li
+                    class="h-10 px-4 flex items-center border border-solid border-[#E9ECEF] text-[12px] text-[#212529] justify-center font-tt"
+                  >
+                    {{ region?.doc_flaws }}
+                  </li>
+                  <li
+                    class="h-10 px-4 flex items-center border border-solid border-[#E9ECEF] text-[12px] text-[#212529] justify-center font-tt"
+                  >
+                    {{ region?.hotel_flaws }}
+                  </li> 
                 </ul>
               </div>
               <!-- <ul v-for="elem in [1, 2, 3, 4, 5, 6]" :key="elem">

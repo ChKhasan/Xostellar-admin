@@ -148,7 +148,7 @@
       >
         <div class="justify-between flex flex-col">
           <p class="text-white font-[verdana-400] text-base">Reyestr raqami</p>
-          <h5 class="text-[24px] text-white font-bold">{{ info?.register_number }}</h5>
+          <h5 class="text-[24px] text-white font-bold">{{ info?.formatted_register_number }}</h5>
         </div>
         <div class="rounded-[6px] justify-between flex flex-col bg-blue-bold">
           <p class="text-white font-[verdana-400] text-base">STIR raqami</p>
