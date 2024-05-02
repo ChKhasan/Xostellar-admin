@@ -276,7 +276,7 @@
                     </svg>
                   </p>
                   <a
-                    :href="`https:/api.hotels.ndc.uz/${
+                    :href="`https://api.hotels.ndc.uz/${
                       files?.cadastre.includes('storage')
                         ? files?.cadastre
                         : `storage/${files?.cadastre}`
@@ -377,7 +377,7 @@
               </a>
               <a
                 v-if="files?.cadastre"
-                :href="`https:/api.hotels.ndc.uz/${
+                :href="`https://api.hotels.ndc.uz/${
                   files?.cadastre.includes('storage')
                     ? files?.cadastre
                     : `storage/${files?.cadastre}`
@@ -509,7 +509,7 @@
             <div class="grid grid-cols-2 gap-6">
               <a
                 v-if="files?.sanitation"
-                :href="`https:/api.hotels.ndc.uz/${
+                :href="`https://api.hotels.ndc.uz/${
                   files?.sanitation.includes('storage')
                     ? files?.sanitation
                     : `storage/${files?.sanitation}`
@@ -640,7 +640,7 @@
               </a>
               <a
                 v-if="files?.fire_safety"
-                :href="`https:/api.hotels.ndc.uz/${
+                :href="`https://api.hotels.ndc.uz/${
                   files?.fire_safety.includes('storage')
                     ? files?.fire_safety
                     : `storage/${files?.fire_safety}`
