@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-[1536px] mx-auto py-10">
+  <div class="mx-auto py-10">
     <div class="search mb-[60px]">
       <div
         class="rounded-[10px] search-block border border-solid relative flex items-center"

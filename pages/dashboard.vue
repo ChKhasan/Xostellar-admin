@@ -160,7 +160,7 @@
             </h1>
             <download-excel
               class="btn btn-default"
-              :data="dashboard.applications"
+              :data="applications"
               :fields="json_fields"
               worksheet="My Worksheet"
               name="statistic_xotels.xls"
@@ -394,7 +394,7 @@
             </div>
             <div class="table-body">
               <div
-                v-for="(region, index) in dashboard.applications"
+                v-for="(region, index) in applications"
                 :key="region?.region.id"
               >
                 <ul class="grid grid-cols-9 gap-2">
@@ -468,7 +468,7 @@ export default {
     return {
       json_fields: {
         "Viloyat nomi": {
-          field: "region.name.ru",
+          field: "region.name.uz",
         },
         "Ko‘rib chiqish muddati yaqinlashdi": "warning",
         "Ko‘rib chiqish muddati kechikdi": "danger",
@@ -476,6 +476,8 @@ export default {
         "Ko‘rib chiqilmoqda": "in_process",
         "Muvaffaqiyatli yakunlandi": "accepted",
         "Rad etildi": "rejected",
+        "Ariza kamchiliklari": "doc_flaws",
+        "Mehmon uyi kamchiliklari": 'hotel_flaws'
       },
 
       json_meta: [
@@ -554,6 +556,7 @@ export default {
         applications: [],
         hotels: [],
       },
+      applications: []
     };
   },
   computed: {
@@ -577,8 +580,8 @@ export default {
         ?.places;
     },
     AplicationstotalCount() {
-      if (this.dashboard?.applications?.length > 0) {
-        return this.dashboard?.applications?.reduce((sum, item) => {
+      if (this.applications?.length > 0) {
+        return this.applications?.reduce((sum, item) => {
           return (
             sum +
             (item?.accepted +
@@ -601,11 +604,58 @@ export default {
   methods: {
     async mapClick(val) {
       this.activeRegion = val;
+      if(val === 8888) {
+        this.applications = this.dashboard.applications
+      } else {
+        this.applications = this.dashboard.applications.filter(
+          (item) => item.region.id === val
+        );
+      }
+      this.generateCount()
+    },
+    generateCount() {
+      let totalCounts = {
+        region: {
+          id: 9999,
+          name: {
+            uz: "Jami",
+            ru: "Jami",
+            en: "Jami"
+          }
+        },
+        warning: 0,
+        danger: 0,
+        new: 0,
+        in_process: 0,
+        accepted: 0,
+        rejected: 0,
+        doc_flaws: 0,
+        hotel_flaws: 0
+      };
+      this.applications.forEach(item => {
+        totalCounts.warning += item.warning;
+        totalCounts.danger += item.danger;
+        totalCounts.new += item.new;
+        totalCounts.in_process += item.in_process;
+        totalCounts.accepted += item.accepted;
+        totalCounts.rejected += item.rejected;
+        totalCounts.doc_flaws += item.doc_flaws;
+        totalCounts.hotel_flaws += item.hotel_flaws;
+      });
+      let totalWithRegion = this.applications.find(item => item.region.id === 9999)
+      if (totalWithRegion) {
+        totalWithRegion = {...totalCounts}
+      } else {
+        this.applications.push(totalCounts);
+      }
+
     },
     async __GET_DASHBOARD() {
       try {
         const data = await this.$store.dispatch("fetchDashboard/getDashboard");
         this.dashboard = { ...data?.data };
+        this.applications = data?.data?.applications
+        this.generateCount()
         if (
           this.$store.state.profileInfo?.region_id &&
           this.dashboard.hotels[0].data.length > 0
@@ -619,8 +669,8 @@ export default {
           });
         }
         if (this.$store.state.profileInfo?.region_id) {
-          this.dashboard.applications = this.dashboard.applications.filter(
-            (item) => item.region.id == this.$store.state.profileInfo?.region_id
+          this.applications = this.dashboard.applications.filter(
+            (item) => item.region.id == this.$store.state.profileInfo?.region_id || item.region.id === 9999
           );
         } else {
           [0, 1, 2].forEach((elem) => {
@@ -672,6 +722,13 @@ export default {
   watch: {
     activeTab() {
       this.activeRegion = this.dashboard?.hotels[0]?.data[0]?.region?.id;
+      this.applications = this.dashboard.applications;
+      if (this.$store.state.profileInfo?.region_id) {
+          this.applications = this.dashboard.applications.filter(
+            (item) => item.region.id == this.$store.state.profileInfo?.region_id 
+          );
+        }
+        this.generateCount()
     },
   },
   components: {
