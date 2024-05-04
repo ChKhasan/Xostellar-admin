@@ -34,7 +34,7 @@
         </button>
       </div>
       <div class="mt-10" v-if="($store.state.profileInfo?.role === 'region_subadmin' ||
-                       $store.state.profileInfo?.role === 'region_admin')">
+                       $store.state.profileInfo?.role === 'region_admin') && !((files?.status === 'accepted' || files?.status === 'rejected') && files?.pipe_status === null)">
         <ApplicationsVerificationSteps :loading="loading" ref="appSteps" :application="files" :reasons="reasons"
                                        :parent-form="form" @submit="submit"
                                        @openModal="openModal" />
