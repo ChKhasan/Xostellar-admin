@@ -387,7 +387,7 @@ export default {
               class="form-item w-full mb-0 max-w-[150px]"
               label="Xona soni"
             >
-              <a-input :disabled="!(activeStatus === 30 || activeStatus === 70)" v-model="form.rooms"
+              <a-input type="number" min="0" :disabled="!(activeStatus === 30 || activeStatus === 70)" v-model="form.rooms"
                        placeholder="Kiriting"/>
             </a-form-model-item>
             <a-form-model-item
@@ -395,7 +395,7 @@ export default {
               class="form-item w-full mb-0 max-w-[150px]"
               label="O’rin-joylar soni"
             >
-              <a-input :disabled="!(activeStatus === 30 || activeStatus === 70)" v-model="form.places"
+              <a-input type="number" min="0" :disabled="!(activeStatus === 30 || activeStatus === 70)" v-model="form.places"
                        placeholder="Kiriting"/>
             </a-form-model-item>
             <a-form-model-item
