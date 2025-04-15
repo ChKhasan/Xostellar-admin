@@ -39,7 +39,8 @@ export default {
   },
   buildModules: ["@nuxtjs/tailwindcss"],
   env: {
-    baseUrl: 'https://hotels.ndc.uz'
+    baseUrl: process.env.BASE_URL,
+    fileUrl: process.env.FILE_URL,
   },
   modules: ["@nuxtjs/axios"],
 

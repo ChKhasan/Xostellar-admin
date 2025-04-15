@@ -61,6 +61,9 @@ export default {
     baseUrl() {
       return process.env.baseUrl
     },
+    apiUrl() {
+      return process.env.fileUrl
+    },
     aplicationGetting() {
       return Object.keys(this.application).length > 0
     },
@@ -245,7 +248,7 @@ export default {
               class="form-item w-full mb-0 max-w-[180px]"
               label="Kamchiliklar bartaraf etilganligi bo‘yicha hujjat"
             >
-              <a :href="`https://api.hotels.ndc.uz//${statusHistory(85)?.changes?.flaws_doc}`" target="_blank"
+              <a :href="`${baseUrl}/${statusHistory(85)?.changes?.flaws_doc}`" target="_blank"
                  class="h-[50px] verdana-400 bg-[#EBEBEB] text-[#020105] text-base flex items-center px-5 border-[#0000004D] rounded-[10px] border border-solid min-w-[334px] justify-between">
                 Hujjat fayli
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

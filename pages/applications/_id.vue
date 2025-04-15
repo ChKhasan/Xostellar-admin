@@ -239,7 +239,7 @@
             <div class="grid grid-cols-2 gap-6">
               <a
                 v-if="files?.state_certificate"
-                :href="`https://api.hotels.ndc.uz/${
+                :href="`${apiUrl}/${
                   files?.state_certificate.includes('storage')
                     ? files?.state_certificate
                     : `storage/${files?.state_certificate}`
@@ -276,7 +276,7 @@
                     </svg>
                   </p>
                   <a
-                    :href="`https://api.hotels.ndc.uz/${
+                    :href="`${apiUrl}/${
                       files?.cadastre.includes('storage')
                         ? files?.cadastre
                         : `storage/${files?.cadastre}`
@@ -377,7 +377,7 @@
               </a>
               <a
                 v-if="files?.cadastre"
-                :href="`https://api.hotels.ndc.uz/${
+                :href="`${apiUrl}/${
                   files?.cadastre.includes('storage')
                     ? files?.cadastre
                     : `storage/${files?.cadastre}`
@@ -509,7 +509,7 @@
             <div class="grid grid-cols-2 gap-6">
               <a
                 v-if="files?.sanitation"
-                :href="`https://api.hotels.ndc.uz/${
+                :href="`${apiUrl}/${
                   files?.sanitation.includes('storage')
                     ? files?.sanitation
                     : `storage/${files?.sanitation}`
@@ -640,7 +640,7 @@
               </a>
               <a
                 v-if="files?.fire_safety"
-                :href="`https://api.hotels.ndc.uz/${
+                :href="`${apiUrl}/${
                   files?.fire_safety.includes('storage')
                     ? files?.fire_safety
                     : `storage/${files?.fire_safety}`
@@ -1238,6 +1238,9 @@ export default {
   computed: {
     baseUrl() {
       return process.env.baseUrl
+    },
+    apiUrl() {
+      return process.env.fileUrl
     },
   },
   methods: {
