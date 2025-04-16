@@ -207,7 +207,7 @@ export default {
               class="form-item w-full mb-0 max-w-[180px]"
               label="Dalolatnoma"
             >
-              <a :href="`${baseUrl}/${formComplete.act}`" target="_blank"
+              <a :href="`${apiUrl}/${formComplete.act}`" target="_blank"
                  class="h-[50px] verdana-400 bg-[#EBEBEB] text-[#020105] text-base flex items-center px-5  rounded-[10px] min-w-[334px] justify-between">
                 Dalolatnomani yuklab olish
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -248,7 +248,7 @@ export default {
               class="form-item w-full mb-0 max-w-[180px]"
               label="Kamchiliklar bartaraf etilganligi bo‘yicha hujjat"
             >
-              <a :href="`${baseUrl}/${statusHistory(85)?.changes?.flaws_doc}`" target="_blank"
+              <a :href="`${apiUrl}/${statusHistory(85)?.changes?.flaws_doc}`" target="_blank"
                  class="h-[50px] verdana-400 bg-[#EBEBEB] text-[#020105] text-base flex items-center px-5 border-[#0000004D] rounded-[10px] border border-solid min-w-[334px] justify-between">
                 Hujjat fayli
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -295,7 +295,7 @@ export default {
                 <a-upload
                   name="file"
                   :multiple="true"
-                  :action="`${baseUrl}/api/files`"
+                  :action="`${apiUrl}/api/files`"
                   :headers="headers"
                   @change="$event => handleChange($event,'formLast')"
                 >
@@ -322,7 +322,7 @@ export default {
                 label="Dalolatnoma"
               >
                 <a
-                  :href="`${baseUrl}/${formLast.act}`"
+                  :href="`${apiUrl}/${formLast.act}`"
                   class="h-[50px] verdana-400 bg-[#EBEBEB] text-[#020105] text-base flex items-center px-5 border-[#0000004D] rounded-[10px] border border-solid min-w-[334px] justify-between">
                   Dalolatnomani yuklab olish
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -419,7 +419,7 @@ export default {
                 :disabled="!(activeStatus === 30 || activeStatus === 70)"
                 name="file"
                 :multiple="true"
-                :action="`${baseUrl}/api/files`"
+                :action="`${apiUrl}/api/files`"
                 :headers="headers"
                 @change="$event => handleChange($event,'form')"
               >
@@ -445,7 +445,7 @@ export default {
               label="Dalolatnoma"
             >
               <a
-                :href="`${baseUrl}/${form.act}`"
+                :href="`${apiUrl}/${form.act}`"
                 class="h-[50px] verdana-400 bg-[#EBEBEB] text-[#020105] text-base flex items-center px-5 border-[#0000004D] rounded-[10px] border border-solid min-w-[334px] justify-between">
                 Dalolatnomani yuklab olish
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
